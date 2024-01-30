@@ -23,11 +23,16 @@ namespace TaskBoardAPI.Controllers
         [Route("login")]
         public IActionResult Login([FromBody] LogInModel logInModel)
         {
+            if (!(HttpContext.Request.Headers.TryGetValue("Content-Type", out var contentType) && contentType == "application/json"))
+            {
+                return BadRequest(new { Message = "Content-Type header is reguired to be application/json" });
+            }
+
             try
             {
                 if (ModelState.IsValid)
                 {
-                    User userFromDB = _dBContext.Users.FirstOrDefault(e => EF.Property<string>(e, "UserName") == logInModel.UserName);
+                    User? userFromDB = _dBContext.Users.FirstOrDefault(e => EF.Property<string>(e, "UserName") == logInModel.UserName);
                     if (userFromDB != null && PasswordHasher.VerifyPassword(logInModel.UserPassword, userFromDB.UserPassword))
                     {
                         return tokenService.GenerateToken(userFromDB.UserID);
@@ -52,6 +57,11 @@ namespace TaskBoardAPI.Controllers
         [Route("register")]
         public IActionResult RegisterUser([FromBody] LogInModel logInModel)
         {
+            if (!(HttpContext.Request.Headers.TryGetValue("Content-Type", out var contentType) && contentType == "application/json"))
+            {
+                return BadRequest(new { Message = "Content-Type header is reguired to be application/json" });
+            }
+
             try
             {
                 if (ModelState.IsValid)
@@ -83,6 +93,11 @@ namespace TaskBoardAPI.Controllers
         [Route("logout")]
         public IActionResult LogOutUser([FromBody] LogOutModel logOutModel)
         {
+            if (!(HttpContext.Request.Headers.TryGetValue("Content-Type", out var contentType) && contentType == "application/json"))
+            {
+                return BadRequest(new { Message = "Content-Type header is reguired to be application/json" });
+            }
+
             if (logOutModel == null || string.IsNullOrWhiteSpace(logOutModel.TokenString))
             {
                 return BadRequest(new { Message = "Invalid request. TokenString is required." });

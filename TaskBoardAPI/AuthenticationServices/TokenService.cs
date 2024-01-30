@@ -34,7 +34,11 @@ namespace TaskBoardAPI.AuthenticationServices
             _dBContext.Tokens.Add(authToken);
             _dBContext.SaveChanges();
 
-            return new ObjectResult(new {Token = authToken});
+            var tokenResponse = new TokenResponse
+            {
+                Token = authToken.Token
+            };
+            return new ObjectResult(new {Token = tokenResponse});
         }
         
         public TokenStatus IsTokenValid(string tokenString)

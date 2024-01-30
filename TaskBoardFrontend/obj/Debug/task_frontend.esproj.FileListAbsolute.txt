@@ -1,0 +1,2 @@
+C:\Users\jedyn\source\repos\Task_Frontend\obj\Debug\task_frontend.esproj.CoreCompileInputs.cache
+C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardFrontend\obj\Debug\task_frontend.esproj.CoreCompileInputs.cache
