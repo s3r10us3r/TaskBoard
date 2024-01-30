@@ -79,6 +79,20 @@ namespace TaskBoardAPI.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("logout")]
+        public IActionResult LogOutUser([FromBody] LogOutModel logOutModel)
+        {
+            if (logOutModel == null || string.IsNullOrWhiteSpace(logOutModel.TokenString))
+            {
+                return BadRequest(new { Message = "Invalid request. TokenString is required." });
+            }
+
+            tokenService.InvalidateToken(logOutModel.TokenString);
+
+            return Ok(new { Message = "User logged out succesfully." });
+        }
+
         private bool IsUniqueConstraintViolation(DbUpdateException ex)
         {
             return ex.InnerException is SqlException sqlException &&

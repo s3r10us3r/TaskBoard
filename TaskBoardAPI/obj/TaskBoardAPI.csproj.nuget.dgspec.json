@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jedyn\\source\\repos\\TaskBoardAPI\\TaskBoardAPI.csproj": {}
+    "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\TaskBoardAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jedyn\\source\\repos\\TaskBoardAPI\\TaskBoardAPI.csproj": {
+    "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\TaskBoardAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jedyn\\source\\repos\\TaskBoardAPI\\TaskBoardAPI.csproj",
+        "projectUniqueName": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\TaskBoardAPI.csproj",
         "projectName": "TaskBoardAPI",
-        "projectPath": "C:\\Users\\jedyn\\source\\repos\\TaskBoardAPI\\TaskBoardAPI.csproj",
+        "projectPath": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\TaskBoardAPI.csproj",
         "packagesPath": "C:\\Users\\jedyn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jedyn\\source\\repos\\TaskBoardAPI\\obj\\",
+        "outputPath": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jedyn\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -13,5 +13,8 @@ namespace TaskBoardAPI.Models
 
         [Required]
         public int UserID { get; set; }
+
+        [Required]
+        public bool Valid { get; set; }
     }
 }
