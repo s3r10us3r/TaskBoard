@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LogInModel } from "../../Models/LogInModel";
+import { LogInModel, UserConflictError } from "../../Models/LogInModel";
 import { usePageContext } from "../../components/PageProvider";
 import WelcomePage from "../WelcomePage/WelcomePage";
 
@@ -50,15 +50,17 @@ const RegisterPage = () => {
         }
 
         let logInModel = new LogInModel(userName, userPassword);
-        try {
-            let response = logInModel.register();
-            console.log(response);
-            setPage(WelcomePage);
-        }
-        catch (error) {
-            setError(error.message);
-        }
-
+        logInModel.register()
+            .then(response => {
+                console.log(response);
+                setPage(WelcomePage);
+            })
+            .catch(error => {
+                if (error instanceof UserConflictError)
+                    setError(error.message);
+                else
+                    setError("Unexpected error occured!");
+            });
     }
 }
 

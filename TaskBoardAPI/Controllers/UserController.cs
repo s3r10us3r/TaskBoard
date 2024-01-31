@@ -108,6 +108,34 @@ namespace TaskBoardAPI.Controllers
             return Ok(new { Message = "User logged out succesfully." });
         }
 
+        [HttpGet]
+        [Route("getUserName")]
+        public IActionResult GetUserName(string tokenString)
+        {
+            TokenStatus tokenStatus = tokenService.IsTokenValid(tokenString);
+            if (tokenStatus == TokenStatus.NON_EXISTANT)
+            {
+                return Unauthorized("This token does not exist!");
+            }
+            if (tokenStatus == TokenStatus.EXPIRED)
+            {
+                return Unauthorized("This token has expired!");
+            }
+
+            AuthToken? authToken = _dBContext.Tokens.Find(tokenString);
+            
+            User? user = _dBContext.Users.Find(authToken.UserID);
+            if (user != null)
+            {
+                return new ObjectResult(new { user.UserName });
+            }
+            else
+            {
+                return Unauthorized("No user with this token has been found!");
+            }
+        }
+        
+
         private bool IsUniqueConstraintViolation(DbUpdateException ex)
         {
             return ex.InnerException is SqlException sqlException &&

@@ -1,4 +1,3 @@
-import React from 'react';
 import { usePageContext } from '../components/PageProvider';
 import WelcomePage from '../pages/WelcomePage/WelcomePage';
 import OtherPage from '../pages/OtherPage/OtherPage';

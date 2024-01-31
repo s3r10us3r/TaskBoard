@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { LogInModel } from "../../Models/LogInModel";
+import { LogInModel, UserConflictError } from "../../Models/LogInModel";
 import { usePageContext } from "../../components/PageProvider"
+import { getTokenExpirationDate } from "../../Models/TokenManagment";
+import Cookies from 'js-cookie';
 
 const WelcomePage = () => { 
     const { setPage } = usePageContext();
@@ -23,7 +25,7 @@ const WelcomePage = () => {
                     value={userPassword}
                     onChange={(e) => setUserPassword(e.target.value)}
                 />
-                <p color="RED">{error}</p>
+                <p style={{ color: 'red' }}>{error}</p>
             </div>
 
             <div>
@@ -36,12 +38,22 @@ const WelcomePage = () => {
     function HandleLogIn() {
         let logInModel = new LogInModel(userName, userPassword);
 
-        try {
-            let response = logInModel.login();
-            console.log(response);
-        }
-        catch(error) {
-            setError(error.message);
+        
+        let data = logInModel.login()
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                if (error instanceof UserConflictError) {
+                    setError(error.message);
+                }
+                else {
+                    setError("Unexpected error occurerd!");
+                }
+            });
+
+        if (data != null) {
+            Cookies.set('authToken', data.token, {expires: getTokenExpirationDate()})
         }
     }
 }

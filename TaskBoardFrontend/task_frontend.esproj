@@ -11,7 +11,7 @@
   <ItemGroup>
     <Folder Include="src\Models\" />
     <Folder Include="src\Constants\" />
+    <Folder Include="src\pages\UserPage\" />
     <Folder Include="src\pages\RegisterPage\" />
-    <Folder Include="src\pages\OtherPage\" />
   </ItemGroup>
 </Project>
