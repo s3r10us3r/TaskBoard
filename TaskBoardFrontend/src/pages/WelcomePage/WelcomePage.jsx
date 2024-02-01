@@ -53,7 +53,8 @@ const WelcomePage = () => {
             });
 
         if (data != null) {
-            Cookies.set('authToken', data.token, {expires: getTokenExpirationDate()})
+            Cookies.set('authToken', data.token, { expires: getTokenExpirationDate() })
+            setPage('UserPage');
         }
     }
 }

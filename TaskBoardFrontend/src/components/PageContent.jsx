@@ -1,7 +1,7 @@
 import { usePageContext } from '../components/PageProvider';
 import WelcomePage from '../pages/WelcomePage/WelcomePage';
-import OtherPage from '../pages/OtherPage/OtherPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage';
+import UserPage from '../pages/UserPage/UserPage';
 
 const PageContent = () => {
     var { currentPage } = usePageContext();
@@ -9,8 +9,8 @@ const PageContent = () => {
     return (
         <>
             {currentPage === 'WelcomePage' && <WelcomePage />}
-            {currentPage === 'OtherPage' && <OtherPage />}
             {currentPage === 'RegisterPage' && <RegisterPage />}
+            {currentPage === 'UserPage' && <UserPage /> }
         </>
     );
 }

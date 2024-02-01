@@ -19,8 +19,14 @@ namespace TaskBoardAPI.Controllers
 
         [HttpGet]
         [Route("validate")]
-        public IActionResult IsTokenValid(string tokenString)
+        public IActionResult IsTokenValid()
         {
+            string? tokenString = Request.Headers["token"];
+            if (tokenString == null)
+            {
+                return BadRequest();
+            }
+
             TokenStatus tokenStatus = tokenService.IsTokenValid(tokenString);
             if(tokenStatus == TokenStatus.VALID)
             {

@@ -110,8 +110,15 @@ namespace TaskBoardAPI.Controllers
 
         [HttpGet]
         [Route("getUserName")]
-        public IActionResult GetUserName(string tokenString)
+        public IActionResult GetUserName()
         {
+            string? tokenString = Request.Headers["token"];
+
+            if (tokenString == null)
+            {
+                return BadRequest();
+            }
+
             TokenStatus tokenStatus = tokenService.IsTokenValid(tokenString);
             if (tokenStatus == TokenStatus.NON_EXISTANT)
             {
