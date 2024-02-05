@@ -10,5 +10,6 @@ namespace TaskBoardAPI.Models
 
         public DbSet<User> Users { get; set; }
         public DbSet<AuthToken> Tokens { get; set; }
+        public DbSet<Board> Boards { get; set; }
     }
 }
