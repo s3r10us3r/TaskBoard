@@ -23,24 +23,22 @@ namespace TaskBoardAPI.Controllers
         [Route("login")]
         public IActionResult Login([FromBody] LogInModel logInModel)
         {
-            if (!(HttpContext.Request.Headers.TryGetValue("Content-Type", out var contentType) && contentType == "application/json"))
-            {
-                return BadRequest(new { Message = "Content-Type header is reguired to be application/json" });
-            }
-
             try
             {
                 if (ModelState.IsValid)
                 {
                     User? userFromDB = _dBContext.Users.FirstOrDefault(e => EF.Property<string>(e, "UserName") == logInModel.UserName);
-                    if (userFromDB != null && PasswordHasher.VerifyPassword(logInModel.UserPassword, userFromDB.UserPassword))
+                    if (userFromDB == null)
                     {
-                        return tokenService.GenerateToken(userFromDB.UserID);
+                        return Unauthorized("This username does not exist!");
                     }
-                    else
+
+                    if (PasswordHasher.VerifyPassword(logInModel.UserPassword, userFromDB.UserPassword))
                     {
-                        return Unauthorized();
+                        return Unauthorized("Invalid password!");
                     }
+
+                    return tokenService.GenerateToken(userFromDB.UserID);
                 }
                 else
                 {
@@ -57,11 +55,6 @@ namespace TaskBoardAPI.Controllers
         [Route("register")]
         public IActionResult RegisterUser([FromBody] LogInModel logInModel)
         {
-            if (!(HttpContext.Request.Headers.TryGetValue("Content-Type", out var contentType) && contentType == "application/json"))
-            {
-                return BadRequest(new { Message = "Content-Type header is reguired to be application/json" });
-            }
-
             try
             {
                 if (ModelState.IsValid)
@@ -91,35 +84,18 @@ namespace TaskBoardAPI.Controllers
 
         [HttpPost]
         [Route("logout")]
-        public IActionResult LogOutUser([FromBody] LogOutModel logOutModel)
+        public IActionResult LogOutUser([FromHeader] string token)
         {
-            if (!(HttpContext.Request.Headers.TryGetValue("Content-Type", out var contentType) && contentType == "application/json"))
-            {
-                return BadRequest(new { Message = "Content-Type header is reguired to be application/json" });
-            }
-
-            if (logOutModel == null || string.IsNullOrWhiteSpace(logOutModel.TokenString))
-            {
-                return BadRequest(new { Message = "Invalid request. TokenString is required." });
-            }
-
-            tokenService.InvalidateToken(logOutModel.TokenString);
+            tokenService.InvalidateToken(token);
 
             return Ok(new { Message = "User logged out succesfully." });
         }
 
         [HttpGet]
         [Route("getUserName")]
-        public IActionResult GetUserName()
+        public IActionResult GetUserName([FromHeader] string token)
         {
-            string? tokenString = Request.Headers["token"];
-
-            if (tokenString == null)
-            {
-                return BadRequest();
-            }
-
-            TokenStatus tokenStatus = tokenService.IsTokenValid(tokenString);
+            TokenStatus tokenStatus = tokenService.IsTokenValid(token);
             if (tokenStatus == TokenStatus.NON_EXISTANT)
             {
                 return Unauthorized("This token does not exist!");
@@ -129,7 +105,7 @@ namespace TaskBoardAPI.Controllers
                 return Unauthorized("This token has expired!");
             }
 
-            AuthToken? authToken = _dBContext.Tokens.Find(tokenString);
+            AuthToken? authToken = _dBContext.Tokens.Find(token);
             
             User? user = _dBContext.Users.Find(authToken.UserID);
             if (user != null)
