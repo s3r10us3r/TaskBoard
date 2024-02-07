@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskBoardAPI.Models
 {
     public class BoardColumn
     {
+        [Key]
         public int ColumnID { get; set; }
         [ForeignKey("BoardID")]
         [Required]

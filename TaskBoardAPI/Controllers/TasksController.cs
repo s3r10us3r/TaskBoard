@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Data.Common;
 using TaskBoardAPI.AuthenticationServices;
 using TaskBoardAPI.Models;
 using Task = TaskBoardAPI.Models.Task;
@@ -53,7 +55,13 @@ namespace TaskBoardAPI.Controllers
                     return StatusCode(500, "Failed to access database!");
                 }
 
-                return new ObjectResult(board.BoardID);
+                BoardModelID boardModelID = new BoardModelID
+                {
+                    BoardID = board.BoardID,
+                    BoardName = board.BoardName,
+                    BackgroundColor = board.BackgroundColor
+                };
+                return new ObjectResult(boardModelID);
             }
 
             return Unauthorized();
@@ -73,21 +81,28 @@ namespace TaskBoardAPI.Controllers
             if (token != null && (tokenService.IsTokenValid(token) == TokenStatus.VALID))
             {
                 AuthToken authToken = _dbContext.Tokens.Find(token);
-               
+
                 Board? boardToDelete = _dbContext.Boards.Find(boardID);
                 if (boardToDelete == null || boardToDelete.UserID != authToken.UserID)
                 {
                     return Unauthorized();
                 }
+                List<BoardColumn> columnsToBeDeleted = _dbContext.BoardColumns.Where(column => EF.Property<int>(column, "BoardID") == boardToDelete.BoardID).ToList();
+
+                foreach(BoardColumn column in columnsToBeDeleted)
+                {
+                    //I think this might be bad practice, since it might lead to bizzare situations where tasks get deleted when other components are not 
+                    int rowsDeleted = _dbContext.Tasks.Where(task => EF.Property<int>(column, "ColumnID") == column.ColumnID).ExecuteDelete();
+                    _dbContext.Remove(column);
+                }
+
                 try
                 {
-                    _dbContext.Boards.Remove(boardToDelete);
                     _dbContext.SaveChanges();
                 }
-                catch(DbUpdateException e)
+                catch (DbException e)
                 {
-                    Console.WriteLine(e);
-                    return StatusCode(500, "Internal server error");
+                    return StatusCode(500, "No access to the database!");
                 }
                 return Ok("Board deleted succesfully!");
             }
@@ -95,6 +110,109 @@ namespace TaskBoardAPI.Controllers
             {
                 return Unauthorized("You don't have permission to delete this board! (user might have been logged out)");
             }
+        }
+
+        [HttpDelete]
+        [Route("deleteColumn")]
+        public IActionResult DeleteColumn([FromHeader] string token, [FromQuery] int columnID)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            TokenStatus status = tokenService.IsTokenValid(token);
+            if (status == TokenStatus.NON_EXISTANT)
+            {
+                return Unauthorized("This token does not exist!");
+            }
+            if (status == TokenStatus.EXPIRED)
+            {
+                return Unauthorized("This token has expired!");
+            }
+
+            //token has been null checked when obtaining its status
+            AuthToken authToken = _dbContext.Tokens.Find(token);
+            int userID = authToken.UserID;
+
+            int? ownerID = taskService.FindColumnOwner(columnID);
+
+            if (ownerID is null)
+            {
+                //this should never happen if everything else is done right
+                return StatusCode(500, "The column does not exist!");
+            }
+            if (ownerID != userID)
+            {
+                return Unauthorized("You don't have access to this column!");
+            }
+
+            //this has been null checked in the FindColumnOwner method
+            BoardColumn column = _dbContext.BoardColumns.Find(columnID);
+
+            int tasksDeleted = _dbContext.BoardColumns.Where(task => EF.Property<int>(task, "ColumndID") == column.ColumnID).ExecuteDelete();
+            _dbContext.BoardColumns.Remove(column);
+
+            try
+            {
+                _dbContext.SaveChanges();
+            }
+            catch (DbUpdateException e)
+            {
+                //LOG
+                return StatusCode(500, "Internal service error!");
+            }
+
+            return Ok("Column has been succesfully deleted!");
+        }
+
+        [HttpDelete]
+        [Route("deleteTask")]
+        public IActionResult DeleteTask([FromHeader] string token, [FromQuery] int taskID)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            TokenStatus status = tokenService.IsTokenValid(token);
+            if (status == TokenStatus.NON_EXISTANT)
+            {
+                return Unauthorized("This token does not exist!");
+            }
+            if (status == TokenStatus.EXPIRED)
+            {
+                return Unauthorized("This token has expired!");
+            }
+
+            //token has been null checked when obtaining its status
+            AuthToken authToken = _dbContext.Tokens.Find(token);
+            int userID = authToken.UserID;
+
+            int? ownerID = taskService.FindTaskOwner(taskID);
+            if (ownerID is null)
+            {
+                //this should never happen if everything else is done right
+                return StatusCode(500, "The task does not exist!");
+            }
+            if (ownerID != userID)
+            {
+                return Unauthorized("You don't have access to this task!");
+            }
+            Task task = _dbContext.Tasks.Find(taskID);
+
+            _dbContext.Tasks.Remove(task);
+            try
+            {
+                _dbContext.SaveChanges();
+            }
+            catch (DbUpdateException e)
+            {
+                //LOG
+                return StatusCode(500, "Internal exception!");
+            }
+
+            return Ok("Task deleted succesfully!");
         }
 
         [HttpGet]
@@ -108,7 +226,9 @@ namespace TaskBoardAPI.Controllers
                 int userId = authToken.UserID;
                 List<Board> boards = [.. _dbContext.Boards.Where(board => EF.Property<int>(board, "UserID") == userId)];
 
-                return new ObjectResult(boards);
+                List<BoardModelID> boardModels = boards.Select(board => new BoardModelID(board)).ToList();
+
+                return new ObjectResult(boardModels);
             }
             else
             {
@@ -195,17 +315,16 @@ namespace TaskBoardAPI.Controllers
 
             BoardColumn? boardColumn = _dbContext.BoardColumns.Find(columnID);
 
-            if (boardColumn is null)
-            {
-                return BadRequest("Invalid boardColumn");
-            }
+            int? ownerID = taskService.FindColumnOwner(boardColumn.ColumnID);
 
-            //If I have done everything correctly it is not possible for a column to be in the db without being binded to an existing board
-            Board board = _dbContext.Boards.Find(boardColumn.BoardID);
-
-            if (board.UserID != userID)
+            if (ownerID is null)
             {
-                return Unauthorized("You don't have access to this board!");
+                return BadRequest("No column owner found");
+            }   
+
+            if (userID != ownerID)
+            {
+                return Unauthorized("You have no access to this column!");
             }
 
             try
@@ -223,6 +342,7 @@ namespace TaskBoardAPI.Controllers
         }
 
         [HttpPatch]
+        [Route("editTask")]
         public IActionResult EditTask([FromHeader] string token, [FromBody] Task updatedTask)
         {
             if (!ModelState.IsValid)
@@ -257,16 +377,165 @@ namespace TaskBoardAPI.Controllers
             {
                 return StatusCode(500, "Internal error!");
             }
+            if (taskOwner != userID)
+            {
+                return Unauthorized();
+            }
 
-            originalTask.TaskName = updatedTask.TaskName;
-            originalTask.ColumnID = updatedTask.ColumnID;
-            originalTask.TaskOrder = updatedTask.TaskOrder;
-            originalTask.TaskColor = updatedTask.TaskColor;
-            originalTask.TaskDescription = updatedTask.TaskDescription;
+            try
+            {
+                originalTask.TaskName = updatedTask.TaskName;
+                originalTask.ColumnID = updatedTask.ColumnID;
+                originalTask.TaskOrder = updatedTask.TaskOrder;
+                originalTask.TaskColor = updatedTask.TaskColor;
+                originalTask.TaskDescription = updatedTask.TaskDescription;
 
-            _dbContext.SaveChanges();
+                _dbContext.SaveChanges();
+            }
+            catch (DbUpdateException e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, "Failed to update DB");
+            }
 
             return Ok("Task updated succesfully!");
+        }
+
+        [HttpPatch]
+        [Route("editColumn")]
+        public IActionResult EditColumn([FromHeader] string token, [FromBody] BoardColumn updatedColumn)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            TokenStatus status = tokenService.IsTokenValid(token);
+            if (status == TokenStatus.NON_EXISTANT)
+            {
+                return Unauthorized("This token does not exist!");
+            }
+            if (status == TokenStatus.EXPIRED)
+            {
+                return Unauthorized("This token has expired!");
+            }
+
+            AuthToken authToken = _dbContext.Tokens.Find(token);
+            int userID = authToken.UserID;
+
+            int? ownerID = taskService.FindColumnOwner(updatedColumn.ColumnID);
+
+            if (ownerID is null)
+            {
+                //this should never happen if everything else is done right
+                return StatusCode(500, "The column does not exist!");
+            }
+            if (ownerID != userID)
+            {
+                return Unauthorized("You are not the owner of this column!");
+            }
+
+            //this has been null checked before in the FindColumnOwner method
+            try
+            {
+                BoardColumn originalColumn = _dbContext.BoardColumns.Find(updatedColumn.ColumnID);
+                originalColumn.ColumnName = updatedColumn.ColumnName;
+                originalColumn.ColumnColor = updatedColumn.ColumnColor;
+                originalColumn.ColumnOrder = updatedColumn.ColumnOrder;
+
+                _dbContext.SaveChanges();
+                return Ok("Column edited succesfully!");
+            }
+            catch (DbException e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, "Db update exception");
+            }
+        }
+
+        [HttpPatch]
+        [Route("editBoard")]
+        public IActionResult EditBoard([FromHeader] string token, [FromBody] BoardModelID updatedBoard)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            TokenStatus status = tokenService.IsTokenValid(token);
+            if (status == TokenStatus.NON_EXISTANT)
+            {
+                return Unauthorized("This token does not exist!");
+            }
+            if (status == TokenStatus.EXPIRED)
+            {
+                return Unauthorized("This token has expired!");
+            }
+
+            AuthToken authToken = _dbContext.Tokens.Find(token);
+            int userID = authToken.UserID;
+
+            Board? originalBoard = _dbContext.Boards.Find(updatedBoard.BoardID);
+            if (originalBoard is null)
+            {
+                return BadRequest("board has not been found!");
+            }
+
+            int ownerID = originalBoard.UserID;
+            if (ownerID != userID)
+            {
+                return Unauthorized("You are not the owner of this board!");
+            }
+
+            try
+            {
+                originalBoard.BoardName = updatedBoard.BoardName;
+                originalBoard.BackgroundColor = updatedBoard.BackgroundColor;
+
+                _dbContext.SaveChanges();
+                return Ok("Board updated succesfully!");
+            }
+            catch (DbException e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, "Failed to update database!");
+            }
+        }
+
+        [HttpGet]
+        [Route("getBoardContents")]
+        public IActionResult getBoardContents([FromHeader] string token, [FromBody] int boardID)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            TokenStatus status = tokenService.IsTokenValid(token);
+            if (status == TokenStatus.NON_EXISTANT)
+            {
+                return Unauthorized("This token does not exist!");
+            }
+            if (status == TokenStatus.EXPIRED)
+            {
+                return Unauthorized("This token has expired!");
+            }
+
+            AuthToken authToken = _dbContext.Tokens.Find(token);
+            int userID = authToken.UserID;
+
+            Board? originalBoard = _dbContext.Boards.Find(boardID);
+            if (originalBoard is null)
+            {
+                return BadRequest("Invalid board ID");
+            }
+
+            int ownerID = originalBoard.UserID;
+            if (ownerID != userID)
+            {
+                return Unauthorized("You don't have access to this board!");
+            }
+
+
+            return new ObjectResult(new BoardAndContents(_dbContext, originalBoard));
         }
     }
 }

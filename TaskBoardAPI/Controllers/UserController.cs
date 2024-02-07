@@ -33,7 +33,7 @@ namespace TaskBoardAPI.Controllers
                         return Unauthorized("This username does not exist!");
                     }
 
-                    if (PasswordHasher.VerifyPassword(logInModel.UserPassword, userFromDB.UserPassword))
+                    if (!PasswordHasher.VerifyPassword(logInModel.UserPassword, userFromDB.UserPassword))
                     {
                         return Unauthorized("Invalid password!");
                     }

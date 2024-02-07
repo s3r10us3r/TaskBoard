@@ -4,6 +4,7 @@ namespace TaskBoardAPI.Models
 {
     public class Board
     {
+        [Key]
         public int BoardID { get; set; }
 
         [Required]
