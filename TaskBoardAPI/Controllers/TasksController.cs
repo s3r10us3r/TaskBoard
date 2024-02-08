@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Data.Common;
 using TaskBoardAPI.AuthenticationServices;
 using TaskBoardAPI.Models;
 using Task = TaskBoardAPI.Models.Task;
+
+using Serilog;
 
 namespace TaskBoardAPI.Controllers
 {
@@ -18,6 +19,14 @@ namespace TaskBoardAPI.Controllers
 
         public TasksController(TaskDBContext dBContext, TokenService tokenService, TaskService taskService)
         {
+            string loggingOutputTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
+
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.File("logs/TaskController.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+            Log.Information("TasksController started");
             _dbContext = dBContext;
             this.tokenService = tokenService;
             this.taskService = taskService;
@@ -27,48 +36,58 @@ namespace TaskBoardAPI.Controllers
         [Route("addBoard")]
         public IActionResult AddBoard([FromBody] BoardModel boardModel, [FromHeader] string token)
         {
-            AuthToken? authToken = _dbContext.Tokens.Find(token);
-            if (authToken != null && (tokenService.IsTokenValid(token) == TokenStatus.VALID))
+            if (!ModelState.IsValid)
             {
-                int userId = authToken.UserID;
-
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest("Invalid request!");
-                }
-
-                Board board = new Board
-                {
-                    UserID = userId,
-                    BoardName = boardModel.BoardName,
-                    BackgroundColor = boardModel.BackgroundColor
-                };
-
-                try
-                {
-                    _dbContext.Boards.Add(board);
-                    _dbContext.SaveChanges();
-                }
-                catch(DbUpdateException e)
-                {
-                    Console.WriteLine(e);
-                    return StatusCode(500, "Failed to access database!");
-                }
-
-                BoardModelID boardModelID = new BoardModelID
-                {
-                    BoardID = board.BoardID,
-                    BoardName = board.BoardName,
-                    BackgroundColor = board.BackgroundColor
-                };
-                return new ObjectResult(boardModelID);
+                //TODO: add model state info
+                Log.Information("Request with invalid model state!");
+                return BadRequest();
+            }
+            TokenStatus status = tokenService.IsTokenValid(token);
+            if (status == TokenStatus.NON_EXISTANT)
+            {
+                Log.Information("Access denied for invalid token in AddBoard: {token}", token);
+                return Unauthorized("This token does not exist!");
+            }
+            if (status == TokenStatus.EXPIRED)
+            {
+                Log.Information("Access denied for expired token in AddBoard: {token}", token);
+                return Unauthorized("This token has expired!");
             }
 
-            return Unauthorized();
+            AuthToken authToken = _dbContext.Tokens.Find(token);
+
+            int userId = authToken.UserID;
+
+            Board board = new Board
+            { 
+                UserID = userId,
+                BoardName = boardModel.BoardName,
+                BackgroundColor = boardModel.BackgroundColor
+            };
+
+            try
+            {
+                _dbContext.Boards.Add(board);
+                _dbContext.SaveChanges();
+            }
+            catch(DbUpdateException e)
+            {
+                Log.Error(e, "DATABASE UPDATE ERROR IN ADDBOARD");
+                return StatusCode(500, new {Message = "Failed to access database!", Error = e});
+            }
+
+            BoardModelID boardModelID = new BoardModelID
+            {
+                BoardID = board.BoardID,
+                BoardName = board.BoardName,
+                BackgroundColor = board.BackgroundColor
+            };
+
+            Log.Information("Board {boardID} added for user {userID}", board.BoardID, board.UserID);
+            return new ObjectResult(boardModelID);
         }
 
         //this deletes a board connected to a user
-        //TODO: make sure all of the board contents get deleted with it, this will require a special service (I think at least)
         [HttpDelete]
         [Route("deleteBoard")]
         public IActionResult DeleteBoard([FromHeader] string token, [FromQuery] int boardID)
@@ -77,39 +96,50 @@ namespace TaskBoardAPI.Controllers
             {
                 return BadRequest();
             }
-
-            if (token != null && (tokenService.IsTokenValid(token) == TokenStatus.VALID))
+            TokenStatus status = tokenService.IsTokenValid(token);
+            if (status == TokenStatus.NON_EXISTANT)
             {
-                AuthToken authToken = _dbContext.Tokens.Find(token);
-
-                Board? boardToDelete = _dbContext.Boards.Find(boardID);
-                if (boardToDelete == null || boardToDelete.UserID != authToken.UserID)
-                {
-                    return Unauthorized();
-                }
-                List<BoardColumn> columnsToBeDeleted = _dbContext.BoardColumns.Where(column => EF.Property<int>(column, "BoardID") == boardToDelete.BoardID).ToList();
-
-                foreach(BoardColumn column in columnsToBeDeleted)
-                {
-                    //I think this might be bad practice, since it might lead to bizzare situations where tasks get deleted when other components are not 
-                    int rowsDeleted = _dbContext.Tasks.Where(task => EF.Property<int>(column, "ColumnID") == column.ColumnID).ExecuteDelete();
-                    _dbContext.Remove(column);
-                }
-
-                try
-                {
-                    _dbContext.SaveChanges();
-                }
-                catch (DbException e)
-                {
-                    return StatusCode(500, "No access to the database!");
-                }
-                return Ok("Board deleted succesfully!");
+                Log.Information("Access denied for invalid token in DeleteBoard: {token}", token);
+                return Unauthorized("This token does not exist!");
             }
-            else
+            if (status == TokenStatus.EXPIRED)
             {
-                return Unauthorized("You don't have permission to delete this board! (user might have been logged out)");
+                Log.Information("Access denied for expired token in DeleteBoard: {token}", token);
+                return Unauthorized("This token has expired!");
             }
+
+            AuthToken authToken = _dbContext.Tokens.Find(token);
+
+            Board? boardToDelete = _dbContext.Boards.Find(boardID);
+            if (boardToDelete == null)
+            {
+                Log.Information("Invalid boardID provided to DeleteBoard method");
+                return BadRequest("Invalid board ID");
+            }
+            if (boardToDelete.UserID != authToken.UserID)
+            {
+                Log.Warning("Access denied to user: {UserID}    board owner: {ownerID}", authToken.UserID, boardToDelete.UserID);
+                return Unauthorized("You don't have access to this board!");
+            }
+            List<BoardColumn> columnsToBeDeleted = _dbContext.BoardColumns.Where(column => EF.Property<int>(column, "BoardID") == boardToDelete.BoardID).ToList();
+
+            foreach (BoardColumn column in columnsToBeDeleted)
+            {
+                //I think this might be bad practice, since it might lead to bizzare situations where tasks get deleted when other components are not 
+                int rowsDeleted = _dbContext.Tasks.Where(task => EF.Property<int>(column, "ColumnID") == column.ColumnID).ExecuteDelete();
+                _dbContext.Remove(column);
+            }
+            try
+            {
+                _dbContext.SaveChanges();
+            }
+            catch (DbException e)
+            {
+                Log.Error(e, "DATABASE UPDATE EXCEPTION IN DELETEBOARD");
+                return StatusCode(500, "No access to the database!");
+            }
+            Log.Information("Deleted board {boardID} and its contents", boardID);
+            return Ok("Board deleted succesfully!");
         }
 
         [HttpDelete]
@@ -124,10 +154,12 @@ namespace TaskBoardAPI.Controllers
             TokenStatus status = tokenService.IsTokenValid(token);
             if (status == TokenStatus.NON_EXISTANT)
             {
+                Log.Information("Access denied for invalid token in DeleteColumn: {token}", token);
                 return Unauthorized("This token does not exist!");
             }
             if (status == TokenStatus.EXPIRED)
             {
+                Log.Information("Access denied for expired token in DeleteBoard: {token}", token);
                 return Unauthorized("This token has expired!");
             }
 
@@ -140,17 +172,19 @@ namespace TaskBoardAPI.Controllers
             if (ownerID is null)
             {
                 //this should never happen if everything else is done right
+                Log.Warning("COLUMN WITH NO OWNER FOUND columndID {columnID}", columnID);
                 return StatusCode(500, "The column does not exist!");
             }
             if (ownerID != userID)
             {
+                Log.Information("Access to column denied for user {userID} column owner {ownerID}", userID, ownerID);
                 return Unauthorized("You don't have access to this column!");
             }
 
             //this has been null checked in the FindColumnOwner method
             BoardColumn column = _dbContext.BoardColumns.Find(columnID);
 
-            int tasksDeleted = _dbContext.BoardColumns.Where(task => EF.Property<int>(task, "ColumndID") == column.ColumnID).ExecuteDelete();
+            int tasksDeleted = _dbContext.BoardColumns.Where(task => EF.Property<int>(task, "ColumnID") == column.ColumnID).ExecuteDelete();
             _dbContext.BoardColumns.Remove(column);
 
             try
@@ -159,10 +193,11 @@ namespace TaskBoardAPI.Controllers
             }
             catch (DbUpdateException e)
             {
-                //LOG
-                return StatusCode(500, "Internal service error!");
+                Log.Error(e, "DATABASE UPDATE EXCEPTION IN DELETE COLUMN {error}");
+                return StatusCode(500, new {Message = "Failed to access database!", Error = e});
             }
 
+            Log.Information("Column {columnID} succesfully deleted!", columnID);
             return Ok("Column has been succesfully deleted!");
         }
 
@@ -193,6 +228,7 @@ namespace TaskBoardAPI.Controllers
             if (ownerID is null)
             {
                 //this should never happen if everything else is done right
+                Log.Warning("Task with no owner found task id: {taskID}", taskID);
                 return StatusCode(500, "The task does not exist!");
             }
             if (ownerID != userID)
@@ -208,7 +244,7 @@ namespace TaskBoardAPI.Controllers
             }
             catch (DbUpdateException e)
             {
-                //LOG
+                Log.Error("DATABASE UPDATE EXCEPTION IN DELETETASK {error}", e);
                 return StatusCode(500, "Internal exception!");
             }
 
@@ -219,21 +255,26 @@ namespace TaskBoardAPI.Controllers
         [Route("allBoards")]
         public IActionResult GetAllBoards([FromHeader] string token)
         {
-            if (ModelState.IsValid && (tokenService.IsTokenValid(token) == TokenStatus.VALID))
+            if (!ModelState.IsValid)
             {
-                //this here does not get null checked because the null check happens inside the if statement when validating token
-                AuthToken authToken = _dbContext.Tokens.Find(token);
-                int userId = authToken.UserID;
-                List<Board> boards = [.. _dbContext.Boards.Where(board => EF.Property<int>(board, "UserID") == userId)];
-
-                List<BoardModelID> boardModels = boards.Select(board => new BoardModelID(board)).ToList();
-
-                return new ObjectResult(boardModels);
+                return BadRequest();
             }
-            else
+            TokenStatus status = tokenService.IsTokenValid(token);
+            if (status == TokenStatus.NON_EXISTANT)
             {
-                return Unauthorized();
+                return Unauthorized("This token does not exist!");
             }
+            if (status == TokenStatus.EXPIRED)
+            {
+                return Unauthorized("This token has expired!");
+            }
+
+            AuthToken authToken = _dbContext.Tokens.Find(token);
+
+            int userId = authToken.UserID;
+            List<Board> boards = [.. _dbContext.Boards.Where(board => EF.Property<int>(board, "UserID") == userId)];
+            List<BoardModelID> boardModels = boards.Select(board => new BoardModelID(board)).ToList();
+            return new ObjectResult(boardModels);
         }
 
         [HttpPost]
@@ -279,8 +320,8 @@ namespace TaskBoardAPI.Controllers
             }
             catch (DbUpdateException e)
             {
-                Console.WriteLine(e);
-                return StatusCode(500, "Failed to update db");
+                Log.Error("DBUPDATE EXCEPTION IN ADDEMPTYCOLUMND {error}", e);
+                return StatusCode(500, new { Message = "Failed to access database!", Error = e });
             }
 
             return new ObjectResult(column.ColumnID);
@@ -334,8 +375,8 @@ namespace TaskBoardAPI.Controllers
             }
             catch (DbUpdateException e)
             {
-                Console.WriteLine(e);
-                return StatusCode(500, "Failed to update db!");
+                Log.Error("DBUPDATE EXCEPTION AT ADDTASK {error}", e);
+                return StatusCode(500, new { Message = "Failed to access database!", Error = e });
             }
 
             return new ObjectResult(task.TaskID);
@@ -375,6 +416,7 @@ namespace TaskBoardAPI.Controllers
 
             if (taskOwner is null)
             {
+                Log.Warning("Task with no owner found task id: {taskID}", updatedTask.TaskID);
                 return StatusCode(500, "Internal error!");
             }
             if (taskOwner != userID)
@@ -395,7 +437,7 @@ namespace TaskBoardAPI.Controllers
             catch (DbUpdateException e)
             {
                 Console.WriteLine(e);
-                return StatusCode(500, "Failed to update DB");
+                return StatusCode(500, new { Message = "Failed to access database!", Error = e });
             }
 
             return Ok("Task updated succesfully!");
@@ -427,7 +469,7 @@ namespace TaskBoardAPI.Controllers
 
             if (ownerID is null)
             {
-                //this should never happen if everything else is done right
+                Log.Warning("column with no owner found task id: {taskID}", updatedColumn.ColumnID);
                 return StatusCode(500, "The column does not exist!");
             }
             if (ownerID != userID)
@@ -448,8 +490,8 @@ namespace TaskBoardAPI.Controllers
             }
             catch (DbException e)
             {
-                Console.WriteLine(e);
-                return StatusCode(500, "Db update exception");
+                Log.Error("DBUPDATE EXCEPTION AT EDIT COLUMN {error}", e);
+                return StatusCode(500, new { Message = "Failed to access database!", Error = e });
             }
         }
 
@@ -496,14 +538,14 @@ namespace TaskBoardAPI.Controllers
             }
             catch (DbException e)
             {
-                Console.WriteLine(e);
-                return StatusCode(500, "Failed to update database!");
+                Log.Error("DBUPDATE EXCEPTION AT EDIT COLUMN {error}", e);
+                return StatusCode(500, new { Message = "Failed to access database!", Error = e });
             }
         }
 
         [HttpGet]
         [Route("getBoardContents")]
-        public IActionResult getBoardContents([FromHeader] string token, [FromBody] int boardID)
+        public IActionResult GetBoardContents([FromHeader] string token, [FromHeader] int boardID)
         {
             if (!ModelState.IsValid)
             {

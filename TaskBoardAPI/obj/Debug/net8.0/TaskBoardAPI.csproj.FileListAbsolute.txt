@@ -141,3 +141,6 @@ C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\refint\Ta
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\TaskBoardAPI.pdb
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\TaskBoardAPI.genruntimeconfig.cache
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\ref\TaskBoardAPI.dll
+C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\bin\Debug\net8.0\Serilog.dll
+C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\bin\Debug\net8.0\Serilog.Sinks.File.dll
