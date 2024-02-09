@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using TaskBoardAPI.AuthenticationServices;
 using TaskBoardAPI.Models;
 
@@ -15,6 +16,15 @@ namespace TaskBoardAPI.Controllers
 
         public UserController(TaskDBContext context, TokenService tokenService)
         {
+            string loggingOutputTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
+
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.File("logs/UserController.txt", rollingInterval: RollingInterval.Day, outputTemplate: loggingOutputTemplate)
+                .CreateLogger();
+            Log.Information("UserController started");
+
             _dBContext = context;
             this.tokenService = tokenService;
         }
@@ -30,11 +40,13 @@ namespace TaskBoardAPI.Controllers
                     User? userFromDB = _dBContext.Users.FirstOrDefault(e => EF.Property<string>(e, "UserName") == logInModel.UserName);
                     if (userFromDB == null)
                     {
+                        Log.Information("Invalid user name provided {login}", logInModel.UserName);
                         return Unauthorized("This username does not exist!");
                     }
 
                     if (!PasswordHasher.VerifyPassword(logInModel.UserPassword, userFromDB.UserPassword))
                     {
+                        Log.Information("Invalid password provided for user {userID}", userFromDB.UserID);
                         return Unauthorized("Invalid password!");
                     }
 
@@ -42,11 +54,13 @@ namespace TaskBoardAPI.Controllers
                 }
                 else
                 {
+                    Log.Information("Invalid data model in Login");
                     return BadRequest(new {Message = "Invalid data.", Errors = ModelState.Values.SelectMany(v => v.Errors) });
                 }
             }
             catch (DbUpdateException ex)
             {
+                Log.Error(ex, "DATABASE UPDATE EXCEPTION AT LOGIN");
                 return StatusCode(500, new { Message = "An error occured during loggin in.", Error = ex.Message });
             }
         }
@@ -70,12 +84,14 @@ namespace TaskBoardAPI.Controllers
                     return Ok(new { Message = "User registered succesfully." });
                 }
 
+                Log.Warning("Invalid modelState at RegisterUser");
                 return BadRequest(new { Message = "Validation failed.", Errors = ModelState.Values.SelectMany(v => v.Errors) });
             }
             catch(DbUpdateException ex)
             {
                 if (IsUniqueConstraintViolation(ex))
                 {
+                    Log.Error(ex, "DATABASE UPDATE EXCEPTION");
                     return Conflict(new { Message = "User with this login already exists!" });
                 }
                 return StatusCode(500, new { Message = "An error occured during registration.", Error = ex.Message });
