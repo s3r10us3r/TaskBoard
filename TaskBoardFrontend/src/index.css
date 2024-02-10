@@ -1,0 +1,21 @@
+* {
+    font-family: 'Montserrat';
+    background-color: #1E1436;
+    color: #F8F8F8;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+#logInButton{
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+#logInButton:active {
+    background-color: #003f80;
+}
