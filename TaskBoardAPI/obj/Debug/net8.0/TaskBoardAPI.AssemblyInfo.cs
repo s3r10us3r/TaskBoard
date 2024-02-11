@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TaskBoardAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+781541287a2679aed713f16b3f96a544779b5309")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5450d89846d2edea8759eede69f0555b070740ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("TaskBoardAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TaskBoardAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

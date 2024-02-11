@@ -1,7 +1,12 @@
-* {
+body {
     font-family: 'Montserrat';
     background-color: #1E1436;
     color: #F8F8F8;
+    margin: 0 auto;
+}
+
+div {
+    margin: 20px;
 }
 
 input {
@@ -14,6 +19,7 @@ input {
     padding: 10px;
     border: 1px solid white;
     border-radius: 10px;
+    width: 150px;
 }
 
 #logInButton:active {
