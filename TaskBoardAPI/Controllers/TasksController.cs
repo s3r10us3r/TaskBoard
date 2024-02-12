@@ -45,12 +45,12 @@ namespace TaskBoardAPI.Controllers
             if (status == TokenStatus.NON_EXISTANT)
             {
                 Log.Information("Access denied for invalid token in AddBoard: {token}", token);
-                return Unauthorized("This token does not exist!");
+                return Unauthorized(new { Message = "This token does not exist!" });
             }
             if (status == TokenStatus.EXPIRED)
             {
                 Log.Information("Access denied for expired token in AddBoard: {token}", token);
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             AuthToken authToken = _dbContext.Tokens.Find(token);
@@ -98,12 +98,12 @@ namespace TaskBoardAPI.Controllers
             if (status == TokenStatus.NON_EXISTANT)
             {
                 Log.Information("Access denied for invalid token in DeleteBoard: {token}", token);
-                return Unauthorized("This token does not exist!");
+                return Unauthorized(new { Message = "This token does not exist!" });
             }
             if (status == TokenStatus.EXPIRED)
             {
                 Log.Information("Access denied for expired token in DeleteBoard: {token}", token);
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             AuthToken authToken = _dbContext.Tokens.Find(token);
@@ -112,12 +112,12 @@ namespace TaskBoardAPI.Controllers
             if (boardToDelete == null)
             {
                 Log.Information("Invalid boardID provided to DeleteBoard method");
-                return BadRequest("Invalid board ID");
+                return BadRequest(new { Message = "Invalid board ID" });
             }
             if (boardToDelete.UserID != authToken.UserID)
             {
                 Log.Warning("Access denied to user: {UserID}    board owner: {ownerID}", authToken.UserID, boardToDelete.UserID);
-                return Unauthorized("You don't have access to this board!");
+                return Unauthorized(new { Message = "You don't have access to this board!" });
             }
             List<BoardColumn> columnsToBeDeleted = _dbContext.BoardColumns.Where(column => EF.Property<int>(column, "BoardID") == boardToDelete.BoardID).ToList();
 
@@ -134,10 +134,10 @@ namespace TaskBoardAPI.Controllers
             catch (DbException e)
             {
                 Log.Error(e, "DATABASE UPDATE EXCEPTION IN DELETEBOARD");
-                return StatusCode(500, "No access to the database!");
+                return StatusCode(500, new { Message = "No access to the database!" });
             }
             Log.Information("Deleted board {boardID} and its contents", boardID);
-            return Ok("Board deleted succesfully!");
+            return Ok(new { Message = "Board deleted succesfully!" });
         }
 
         [HttpDelete]
@@ -153,12 +153,12 @@ namespace TaskBoardAPI.Controllers
             if (status == TokenStatus.NON_EXISTANT)
             {
                 Log.Information("Access denied for invalid token in DeleteColumn: {token}", token);
-                return Unauthorized("This token does not exist!");
+                return Unauthorized(new { Message = "This token does not exist!" });
             }
             if (status == TokenStatus.EXPIRED)
             {
                 Log.Information("Access denied for expired token in DeleteBoard: {token}", token);
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             //token has been null checked when obtaining its status
@@ -171,12 +171,12 @@ namespace TaskBoardAPI.Controllers
             {
                 //this should never happen if everything else is done right
                 Log.Warning("COLUMN WITH NO OWNER FOUND columndID {columnID}", columnID);
-                return StatusCode(500, "The column does not exist!");
+                return StatusCode(500, new { Message = "The column does not exist!" });
             }
             if (ownerID != userID)
             {
                 Log.Information("Access to column denied for user {userID} column owner {ownerID}", userID, ownerID);
-                return Unauthorized("You don't have access to this column!");
+                return Unauthorized(new { Message = "You don't have access to this column!" });
             }
 
             //this has been null checked in the FindColumnOwner method
@@ -196,7 +196,7 @@ namespace TaskBoardAPI.Controllers
             }
 
             Log.Information("Column {columnID} succesfully deleted!", columnID);
-            return Ok("Column has been succesfully deleted!");
+            return Ok(new { Message = "Column has been succesfully deleted!" });
         }
 
         [HttpDelete]
@@ -212,12 +212,12 @@ namespace TaskBoardAPI.Controllers
             if (status == TokenStatus.NON_EXISTANT)
             {
                 Log.Information("Access denied for invalid token in DeleteTolumn: {token}", token);
-                return Unauthorized("This token does not exist!");
+                return Unauthorized(new { Message = "This token does not exist!" });
             }
             if (status == TokenStatus.EXPIRED)
             {
                 Log.Information("Access denied for expired token in DeleteTask: {token}", token);
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             //token has been null checked when obtaining its status
@@ -229,12 +229,12 @@ namespace TaskBoardAPI.Controllers
             {
                 //this should never happen if everything else is done right
                 Log.Warning("Task with no owner found task id: {taskID}", taskID);
-                return StatusCode(500, "The task does not exist!");
+                return StatusCode(500, new { Message = "The task does not exist!" });
             }
             if (ownerID != userID)
             {
                 Log.Warning("Denied access to task {taskID} for user {userID} owner {ownerID}", taskID, userID, ownerID);
-                return Unauthorized("You don't have access to this task!");
+                return Unauthorized(new { Message = "You don't have access to this task!" });
             }
             Task task = _dbContext.Tasks.Find(taskID);
 
@@ -246,11 +246,11 @@ namespace TaskBoardAPI.Controllers
             catch (DbUpdateException e)
             {
                 Log.Error("DATABASE UPDATE EXCEPTION IN DELETETASK {error}", e);
-                return StatusCode(500, "Internal exception!");
+                return StatusCode(500, new { Message = "Internal exception!" });
             }
 
             Log.Information("Deleted task {taskID}", taskID);
-            return Ok("Task deleted succesfully!");
+            return Ok(new { Message = "Task deleted succesfully!" });
         }
 
         [HttpGet]
@@ -265,12 +265,12 @@ namespace TaskBoardAPI.Controllers
             if (status == TokenStatus.NON_EXISTANT)
             {
                 Log.Information("Access denied for invalid token in GetAllBoards: {token}", token);
-                return Unauthorized("This token does not exist!");
+                return Unauthorized(new { Message = "This token does not exist!" });
             }
             if (status == TokenStatus.EXPIRED)
             {
                 Log.Information("Access denied for expired token in GetAllBoards: {token}", token);
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             AuthToken authToken = _dbContext.Tokens.Find(token);
@@ -295,12 +295,12 @@ namespace TaskBoardAPI.Controllers
             if (status == TokenStatus.NON_EXISTANT)
             {
                 Log.Information("Access denied for invalid token in AddEmptyColumn: {token}", token);
-                return Unauthorized("This token does not exist!");
+                return Unauthorized(new { Message = "This token does not exist!" });
             }
             if (status == TokenStatus.EXPIRED)
             {
                 Log.Information("Access denied for expired token in AddEmptyColumn: {token}", token);
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             //since token status is valid it does exist in the database
@@ -313,12 +313,12 @@ namespace TaskBoardAPI.Controllers
             if (board is null)
             {
                 Log.Information("Non existant boardID provided ({boardID})", boardID);
-                return BadRequest("Invalid board ID");
+                return BadRequest(new { Message = "Invalid board ID" });
             }
             if (board.UserID != userID)
             {
                 Log.Information("Access to board {boardID} by user {userID} denied", boardID, userID);
-                return Unauthorized("You don't have access to this board!");
+                return Unauthorized(new { Message = "You don't have access to this board!" });
             }
 
             try
@@ -352,12 +352,12 @@ namespace TaskBoardAPI.Controllers
             if (status == TokenStatus.NON_EXISTANT)
             {
                 Log.Information("Access denied for invalid token in AddTask: {token}", token);
-                return Unauthorized("This token does not exist!");
+                return Unauthorized(new { Message = "This token does not exist!" });
             }
             if (status == TokenStatus.EXPIRED)
             {
                 Log.Information("Access denied for expired token in AddTask: {token}", token);
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             //since token status is valid it does exist in the database
@@ -372,13 +372,13 @@ namespace TaskBoardAPI.Controllers
             if (ownerID is null)
             {
                 Log.Warning("COLUMN WITH NO OWNER FOUND columnID: {columnID}", columnID);
-                return BadRequest("No column owner found");
+                return BadRequest(new { Message = "No column owner found" });
             }   
 
             if (userID != ownerID)
             {
                 Log.Information("Access to column {columnID} denied for user {userID}", columnID, userID);
-                return Unauthorized("You have no access to this column!");
+                return Unauthorized(new { Message = "You have no access to this column!" });
             }
 
             try
@@ -410,12 +410,12 @@ namespace TaskBoardAPI.Controllers
             if (status == TokenStatus.NON_EXISTANT)
             {
                 Log.Information("Access denied for invalid token in EditTask: {token}", token);
-                return Unauthorized("This token does not exist!");
+                return Unauthorized(new { Message = "This token does not exist!" });
             }
             if (status == TokenStatus.EXPIRED)
             {
                 Log.Information("Access denied for expired token in EditTask: {token}", token);
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             AuthToken authToken = _dbContext.Tokens.Find(token);
@@ -426,7 +426,7 @@ namespace TaskBoardAPI.Controllers
             if (originalTask is null)
             {
                 Log.Information("User {userID} tried to edit non existing task {taskID}", userID, updatedTask.TaskID);
-                return BadRequest("There is no task with this ID");
+                return BadRequest(new { Message = "There is no task with this ID" });
             }
 
             int? taskOwner = taskService.FindTaskOwner(originalTask.TaskID);
@@ -434,12 +434,12 @@ namespace TaskBoardAPI.Controllers
             if (taskOwner is null)
             {
                 Log.Warning("Task with no owner found task id: {taskID}", updatedTask.TaskID);
-                return StatusCode(500, "Internal error!");
+                return StatusCode(500, new { Message = "Internal error!" });
             }
             if (taskOwner != userID)
             {
                 Log.Information("Denied access to task {taskID} for {userID} task owner {ownerID}", updatedTask.TaskID, userID, taskOwner);
-                return Unauthorized("You don't have access to this task!");
+                return Unauthorized(new { Message = "You don't have access to this task!" });
             }
 
             try
@@ -474,12 +474,12 @@ namespace TaskBoardAPI.Controllers
             if (status == TokenStatus.NON_EXISTANT)
             {
                 Log.Information("Access denied for invalid token in EditColumn: {token}", token);
-                return Unauthorized("This token does not exist!");
+                return Unauthorized(new { Message = "This token does not exist!" });
             }
             if (status == TokenStatus.EXPIRED)
             {
                 Log.Information("Access denied for expired token in EditColumn: {token}", token);
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             AuthToken authToken = _dbContext.Tokens.Find(token);
@@ -490,12 +490,12 @@ namespace TaskBoardAPI.Controllers
             if (ownerID is null)
             {
                 Log.Warning("column with no owner found task id: {taskID}", updatedColumn.ColumnID);
-                return StatusCode(500, "The column does not exist!");
+                return StatusCode(500, new { Message = "The column does not exist!" });
             }
             if (ownerID != userID)
             {
                 Log.Information("Access denied to {columnID} for {userID} ownerID: {ownerID}");
-                return Unauthorized("You are not the owner of this column!");
+                return Unauthorized(new { Message = "You are not the owner of this column!" });
             }
 
             //this has been null checked before in the FindColumnOwner method
@@ -507,7 +507,7 @@ namespace TaskBoardAPI.Controllers
                 originalColumn.ColumnOrder = updatedColumn.ColumnOrder;
 
                 _dbContext.SaveChanges();
-                return Ok("Column edited succesfully!");
+                return Ok(new { Message = "Column edited succesfully!" });
             }
             catch (DbException e)
             {
@@ -528,12 +528,12 @@ namespace TaskBoardAPI.Controllers
             if (status == TokenStatus.NON_EXISTANT)
             {
                 Log.Information("Access denied for invalid token in EditBoard: {token}", token);
-                return Unauthorized("This token does not exist!");
+                return Unauthorized(new { Message = "This token does not exist!" });
             }
             if (status == TokenStatus.EXPIRED)
             {
                 Log.Information("Access denied for invalid token in DeleteColumn: {token}", token);
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             AuthToken authToken = _dbContext.Tokens.Find(token);
@@ -543,14 +543,14 @@ namespace TaskBoardAPI.Controllers
             if (originalBoard is null)
             {
                 Log.Information("User tried to access non existing board {boardID}", updatedBoard.BoardID);
-                return BadRequest("board has not been found!");
+                return BadRequest(new { Message = "board has not been found!" });
             }
 
             int ownerID = originalBoard.UserID;
             if (ownerID != userID)
             {
                 Log.Warning("Access denied to board {boardID} for user {userID} ownerID {ownerID}", updatedBoard.BoardID, userID, ownerID);
-                return Unauthorized("You are not the owner of this board!");
+                return Unauthorized(new { Message = "You are not the owner of this board!" });
             }
 
             try
@@ -559,7 +559,7 @@ namespace TaskBoardAPI.Controllers
                 originalBoard.BackgroundColor = updatedBoard.BackgroundColor;
 
                 _dbContext.SaveChanges();
-                return Ok("Board updated succesfully!");
+                return Ok(new { Message = "Board updated succesfully!" });
             }
             catch (DbException e)
             {
@@ -580,12 +580,12 @@ namespace TaskBoardAPI.Controllers
             if (status == TokenStatus.NON_EXISTANT)
             {
                 Log.Information("Access denied for invalid token in GetBoardContents: {token}", token);
-                return Unauthorized("This token does not exist!");
+                return Unauthorized(new { Message = "This token does not exist!" });
             }
             if (status == TokenStatus.EXPIRED)
             {
                 Log.Information("Access denied for expired token in GetBoardContents: {token}", token);
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             AuthToken authToken = _dbContext.Tokens.Find(token);
@@ -594,14 +594,14 @@ namespace TaskBoardAPI.Controllers
             Board? originalBoard = _dbContext.Boards.Find(boardID);
             if (originalBoard is null)
             {
-                return BadRequest("Invalid board ID");
+                return BadRequest(new { Message = "Invalid board ID" });
             }
 
             int ownerID = originalBoard.UserID;
             if (ownerID != userID)
             {
                 Log.Warning("Access denied to board {boardID} for user {userID} ownerID {ownerID}");
-                return Unauthorized("You don't have access to this board!");
+                return Unauthorized(new { Message = "You don't have access to this board!" });
             }
 
 

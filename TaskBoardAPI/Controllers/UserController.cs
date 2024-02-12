@@ -41,16 +41,22 @@ namespace TaskBoardAPI.Controllers
                     if (userFromDB == null)
                     {
                         Log.Information("Invalid user name provided {login}", logInModel.UserName);
-                        return Unauthorized("This username does not exist!");
+                        return Unauthorized(new
+                        {
+                            Message = "This username does not exist!"
+                        });
                     }
 
                     if (!PasswordHasher.VerifyPassword(logInModel.UserPassword, userFromDB.UserPassword))
                     {
                         Log.Information("Invalid password provided for user {userID}", userFromDB.UserID);
-                        return Unauthorized("Invalid password!");
+                        return Unauthorized(new
+                        {
+                            Message = "Invalid password!"
+                        });
                     }
-
-                    return tokenService.GenerateToken(userFromDB.UserID);
+                    TokenResponse tokenReponse = tokenService.GenerateToken(userFromDB.UserID);
+                    return new ObjectResult(tokenReponse);
                 }
                 else
                 {
@@ -114,11 +120,11 @@ namespace TaskBoardAPI.Controllers
             TokenStatus tokenStatus = tokenService.IsTokenValid(token);
             if (tokenStatus == TokenStatus.NON_EXISTANT)
             {
-                return Unauthorized("This token does not exist!");
+                return Unauthorized (new { Message = "This token does not exist!" });
             }
             if (tokenStatus == TokenStatus.EXPIRED)
             {
-                return Unauthorized("This token has expired!");
+                return Unauthorized(new { Message = "This token has expired!" });
             }
 
             AuthToken? authToken = _dBContext.Tokens.Find(token);
@@ -130,7 +136,10 @@ namespace TaskBoardAPI.Controllers
             }
             else
             {
-                return Unauthorized("No user with this token has been found!");
+                return Unauthorized(new
+                {
+                    Message = "No user with this token has been found!"
+                });
             }
         }
         

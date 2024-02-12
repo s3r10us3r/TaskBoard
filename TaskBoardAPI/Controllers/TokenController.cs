@@ -24,11 +24,11 @@ namespace TaskBoardAPI.Controllers
             TokenStatus tokenStatus = tokenService.IsTokenValid(token);
             if(tokenStatus == TokenStatus.VALID)
             {
-                return Ok("Token is valid!");
+                return Ok(new { Message = "Token is valid!" });
             }
             else
             {
-                return Unauthorized("Token is invalid!");
+                return Unauthorized(new {Message = "Token is invalid!" });
             }
         }
     }

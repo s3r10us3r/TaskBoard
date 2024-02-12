@@ -19,7 +19,7 @@ namespace TaskBoardAPI.AuthenticationServices
             _dBContext = dBContext;
         }
 
-        public IActionResult GenerateToken(int userID)
+        public TokenResponse GenerateToken(int userID)
         {
             InvalidateTokensForUser(userID);
 
@@ -34,11 +34,11 @@ namespace TaskBoardAPI.AuthenticationServices
             _dBContext.Tokens.Add(authToken);
             _dBContext.SaveChanges();
 
-            var tokenResponse = new TokenResponse
+            TokenResponse tokenResponse = new TokenResponse
             {
                 Token = authToken.Token
             };
-            return new ObjectResult(new {Token = tokenResponse});
+            return tokenResponse;
         }
         
         public TokenStatus IsTokenValid(string tokenString)
