@@ -21,14 +21,19 @@ namespace TaskBoardAPI.Controllers
         [Route("validate")]
         public IActionResult IsTokenValid([FromHeader] string token)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { Message = "Invalid data.", Errors = ModelState.Values.SelectMany(v => v.Errors) });
+            }
+
             TokenStatus tokenStatus = tokenService.IsTokenValid(token);
             if(tokenStatus == TokenStatus.VALID)
             {
-                return Ok(new { Message = "Token is valid!" });
+                return Ok(new { Message = "Token is valid!", isValid = true});
             }
             else
             {
-                return Unauthorized(new {Message = "Token is invalid!" });
+                return Unauthorized(new {Message = "Token is invalid!", isValid = false});
             }
         }
     }

@@ -276,9 +276,9 @@ namespace TaskBoardAPI.Controllers
             AuthToken authToken = _dbContext.Tokens.Find(token);
 
             int userId = authToken.UserID;
-            List<Board> boards = [.. _dbContext.Boards.Where(board => EF.Property<int>(board, "UserID") == userId)];
-            List<BoardModelID> boardModels = boards.Select(board => new BoardModelID(board)).ToList();
-            return new ObjectResult(boardModels);
+            List<Board> boardsWithId = [.. _dbContext.Boards.Where(board => EF.Property<int>(board, "UserID") == userId)];
+            List<BoardModelID> boards = boardsWithId.Select(board => new BoardModelID(board)).ToList();
+            return new ObjectResult(new { boards });
         }
 
         [HttpPost]

@@ -1,2 +1,0 @@
-2024-02-12 12:05:27.985 [INF] UserController started
-2024-02-12 12:05:28.362 [INF] Invalid password provided for user 33
