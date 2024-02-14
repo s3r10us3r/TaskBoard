@@ -1,0 +1,33 @@
+.sideBar {
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #000000;
+    opacity: 50%;
+    margin: 0;
+    transition: left 0.3s ease;
+}
+
+.sideBar.hidden {
+    left: -180px;
+}
+
+#sideBarToggle {
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    width: 25px;
+    height: 25px;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}

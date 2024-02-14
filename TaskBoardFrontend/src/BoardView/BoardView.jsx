@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { getCookie, deleteCookie } from "../Services/CookieService";
 import { API_PATH } from "../constants";
+import './BoardView.css'
 
 function BoardView() {
-    const [token, setToken] = useState(getCookie('token'));
+    const token = getCookie('token');
     const [username, setUsername] = useState("");
     const [allBoards, setAllBoards] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -47,13 +48,19 @@ function BoardView() {
         }
     }, []);
 
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+
+    function toggleSidebar() {
+        setSidebarOpen(prevState => !prevState);
+    }
+
     if (loading) {
         return <div>Loading...</div>
     }
 
     return (
         <>
-            <div id="sideBar">
+            <div className={`sideBar${sidebarOpen ? "" : " hidden"}`}>
                 <p id="sideBarUserName">{username}</p>
                 <div id="boards">
                     {
@@ -62,6 +69,7 @@ function BoardView() {
                         ))
                     }
                 </div>
+                <div id="sideBarToggle" onClick={toggleSidebar}>{sidebarOpen ? "<" : ">"}</div>
             </div>
             
         </>
