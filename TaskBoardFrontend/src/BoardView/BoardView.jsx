@@ -69,7 +69,7 @@ function BoardView() {
                         ))
                     }
                 </div>
-                <div id="sideBarToggle" onClick={toggleSidebar}>{sidebarOpen ? "<" : ">"}</div>
+                <div className="sideBarToggle" onClick={toggleSidebar}>{sidebarOpen ? "<" : ">"}</div>
             </div>
             
         </>

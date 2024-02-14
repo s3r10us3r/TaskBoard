@@ -1,25 +1,7 @@
-import { useEffect } from "react";
 import { getCookie, setCookie, deleteCookie } from "../Services/CookieService";
 import {API_PATH} from "../constants"
 
 function LoginPage() {
-    useEffect(() => {
-        async function checkTokenValidity() {
-            try {
-                const tokenIsValid = await validateToken();
-                if (tokenIsValid) {
-                    window.location.href = "/board";
-                }
-            } catch (error) {
-                console.error(error);
-                deleteCookie('token');
-            }
-        }
-
-        checkTokenValidity();
-    }, []);
-    
-
     return (
         <>
             <h1>Welcome to TaskBoard</h1>
