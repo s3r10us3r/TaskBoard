@@ -23,20 +23,12 @@
       "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\models\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:models\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\models\\tokenresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:models\\tokenresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\taskboardapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -50,12 +42,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -66,12 +54,11 @@
               "RelativeToolTip": "Controllers\\UserController.cs",
               "ViewState": "AQIAABMAAAAAAAAAAAAQwD8AAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-30T11:33:07.609Z",
-              "IsPinned": true
+              "WhenOpened": "2024-01-30T11:33:07.609Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "TaskBoardAPI.csproj",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\TaskBoardAPI.csproj",
               "RelativeDocumentMoniker": "TaskBoardAPI.csproj",
@@ -107,7 +94,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "TaskService.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Services\\TaskService.cs",
               "RelativeDocumentMoniker": "Services\\TaskService.cs",
@@ -144,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "TokenResponse.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\TokenResponse.cs",
               "RelativeDocumentMoniker": "Models\\TokenResponse.cs",
@@ -153,30 +140,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-01-30T15:40:58.989Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Board.cs",
-              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\Board.cs",
-              "RelativeDocumentMoniker": "Models\\Board.cs",
-              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\Board.cs",
-              "RelativeToolTip": "Models\\Board.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-05T18:51:00.44Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Task.cs",
-              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\Task.cs",
-              "RelativeDocumentMoniker": "Models\\Task.cs",
-              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\Task.cs",
-              "RelativeToolTip": "Models\\Task.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAgAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-06T12:29:18.18Z"
             }
           ]
         }

@@ -35,16 +35,8 @@
       "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\constants.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\services\\cookieservice.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\services\\cookieservice.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\.eslintrc.cjs||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:.eslintrc.cjs||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -68,7 +60,7 @@
               "RelativeDocumentMoniker": "src\\BoardView\\BoardView.jsx",
               "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\BoardView.jsx",
               "RelativeToolTip": "src\\BoardView\\BoardView.jsx",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEQAAAAoAAAA",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAYwJwAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2024-02-13T14:49:38.201Z",
               "IsPinned": true,
@@ -82,7 +74,7 @@
               "RelativeDocumentMoniker": "src\\BoardView\\BoardView.css",
               "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\BoardView.css",
               "RelativeToolTip": "src\\BoardView\\BoardView.css",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAAAGoAAAAdAAAA",
+              "ViewState": "AQIAAGYAAAAAAAAAAAAAAHwAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-02-14T10:39:50.7Z",
               "IsPinned": true,
@@ -124,8 +116,7 @@
               "RelativeToolTip": "src\\Redirector.jsx",
               "ViewState": "AQIAAAsAAAAAAAAAAAAAwAEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2024-02-14T13:00:11.675Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-14T13:00:11.675Z"
             },
             {
               "$type": "Document",
@@ -137,8 +128,7 @@
               "RelativeToolTip": "src\\constants.js",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-02-11T20:59:47.916Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-11T20:59:47.916Z"
             },
             {
               "$type": "Document",
@@ -150,8 +140,7 @@
               "RelativeToolTip": "src\\main.jsx",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2024-02-09T11:03:10.957Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-09T11:03:10.957Z"
             },
             {
               "$type": "Document",
@@ -163,12 +152,11 @@
               "RelativeToolTip": "src\\RegisterPage\\Register.jsx",
               "ViewState": "AQIAAFMAAAAAAAAAAAAAwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2024-02-15T00:17:59.294Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-15T00:17:59.294Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": ".eslintrc.cjs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\.eslintrc.cjs",
               "RelativeDocumentMoniker": ".eslintrc.cjs",
@@ -180,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 9,
               "Title": "vite.config.js",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\vite.config.js",
               "RelativeDocumentMoniker": "vite.config.js",
@@ -189,31 +177,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-02-09T11:03:24.208Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "package.json",
-              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\package.json",
-              "RelativeDocumentMoniker": "package.json",
-              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\package.json",
-              "RelativeToolTip": "package.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-02-09T11:03:47.047Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CookieService.js",
-              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\Services\\CookieService.js",
-              "RelativeDocumentMoniker": "src\\Services\\CookieService.js",
-              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\Services\\CookieService.js",
-              "RelativeToolTip": "src\\Services\\CookieService.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-02-12T11:50:55.545Z",
-              "EditorCaption": ""
             }
           ]
         }

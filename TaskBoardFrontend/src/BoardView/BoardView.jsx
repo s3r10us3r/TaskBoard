@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCookie, deleteCookie } from "../Services/CookieService";
 import { useNavigate } from "react-router-dom";
-import { API_PATH, SNOW_THRESHOLD } from "../constants";
+import { API_PATH} from "../constants";
 import './BoardView.css'
 
 function BoardView() {
@@ -73,7 +73,10 @@ function BoardView() {
                 <div id="boards">
                     {
                         allBoards.map((board, index) => (
-                            <p key={index} className="board" style={{ backgroundColor: board.backgroundColor, color: relativeLuminance(board.backgroundColor) < SNOW_THRESHOLD ? "snow" : "black" }}>{board.boardName}</p>
+                            <div className="boardContainer" key={index}>
+                                <div className="boardSquare" style={{backgroundColor: board.backgroundColor}} />
+                                <p className="boardText">{board.boardName}</p>
+                            </div>
                         ))
                     }
                 </div>
@@ -152,14 +155,3 @@ async function getAllBoards(token) {
     }
 }
 export default BoardView;
-
-
-function relativeLuminance(color) {
-    color = color.substring(1);
-
-    const red = parseInt(color.substring(0, 2), 16);
-    const green = parseInt(color.substring(2, 4), 16);
-    const blue = parseInt(color.substring(4, 6), 16);
-
-    return (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
-}

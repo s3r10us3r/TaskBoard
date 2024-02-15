@@ -89,11 +89,6 @@
     opacity: 1;
 }
 
-p.board {
-    border-radius: 5px;
-    border: 2px solid;
-}
-
 .newBoardButton {
     width: 150px;
     color: snow;
@@ -104,5 +99,28 @@ p.board {
 }
 
 .newBoardButton:hover {
+    background-color: #3d3254;
+}
+
+.boardSquare {
+    width: 10px;
+    height: 10px;
+}
+p.boardText {
+    width: 100px;
+}
+
+.boardContainer {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0px;
+    width: 100%;
+    border-bottom: 2px solid snow;
+}
+
+.boardContainer:hover {
     background-color: #3d3254;
 }
