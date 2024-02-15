@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { getCookie, deleteCookie } from "../Services/CookieService";
-import { API_PATH } from "../constants";
+import { useNavigate } from "react-router-dom";
+import { API_PATH, SNOW_THRESHOLD } from "../constants";
 import './BoardView.css'
 
 function BoardView() {
+    const navigate = useNavigate();
+
     const token = getCookie('token');
     const [username, setUsername] = useState("");
     const [allBoards, setAllBoards] = useState([]);
@@ -61,11 +64,16 @@ function BoardView() {
     return (
         <>
             <div className={`sideBar${sidebarOpen ? "" : " hidden"}`}>
-                <p id="sideBarUserName">{username}</p>
+                <div className='userDiv'>
+                    <img className="userIcon" src="User-Icon.svg.png"/>
+                    <p className="sideBarUserName">{username}</p>
+                    <button className="logOutButton" data-tooltip="Log out" onClick={logOut}>x</button>
+                </div>
+                <button className="newBoardButton">+ new board</button>
                 <div id="boards">
                     {
                         allBoards.map((board, index) => (
-                            <p key={index}>{board.boardName}</p>
+                            <p key={index} className="board" style={{ backgroundColor: board.backgroundColor, color: relativeLuminance(board.backgroundColor) < SNOW_THRESHOLD ? "snow" : "black" }}>{board.boardName}</p>
                         ))
                     }
                 </div>
@@ -74,6 +82,20 @@ function BoardView() {
             
         </>
     )
+
+    async function logOut() {
+        deleteCookie('token');
+
+        const response = await fetch(API_PATH + "/User/logout", {
+            method: 'GET',
+            headers: {
+                'token': token
+            }
+        })
+
+        console.log(response.json());
+        navigate("/login");
+    }
 }
 
 async function getUsername(token) {
@@ -130,3 +152,14 @@ async function getAllBoards(token) {
     }
 }
 export default BoardView;
+
+
+function relativeLuminance(color) {
+    color = color.substring(1);
+
+    const red = parseInt(color.substring(0, 2), 16);
+    const green = parseInt(color.substring(2, 4), 16);
+    const blue = parseInt(color.substring(4, 6), 16);
+
+    return (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
+}

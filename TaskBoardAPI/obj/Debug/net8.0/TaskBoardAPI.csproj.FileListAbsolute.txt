@@ -135,7 +135,6 @@ C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\staticweb
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.TaskBoardAPI.props
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\scopedcss\bundle\TaskBoardAPI.styles.css
-C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\TaskBoardAPI.csproj.CopyComplete
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\TaskBoardAPI.dll
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\refint\TaskBoardAPI.dll
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\TaskBoardAPI.pdb
@@ -144,3 +143,4 @@ C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\ref\TaskB
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\bin\Debug\net8.0\Serilog.dll
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\bin\Debug\net8.0\Serilog.Sinks.Console.dll
 C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\bin\Debug\net8.0\Serilog.Sinks.File.dll
+C:\Users\jedyn\OneDrive\Pulpit\TaskBoard\TaskBoardAPI\obj\Debug\net8.0\TaskBoar.3B36B301.Up2Date

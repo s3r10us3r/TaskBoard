@@ -36,3 +36,73 @@
     .sideBarToggle:hover {
         opacity: 1;
     }
+
+.userDiv {
+    width:150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.userIcon {
+    width:25px;
+}
+
+.logOutButton {
+    color: white;
+    width:20px;
+    height:20px;
+    border-width: 0px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: transparent;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+    .logOutButton:hover {
+        background-color: red;
+    }
+
+.logOutButton::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 55px;
+    width: 50px;
+    transform: translateX(-50%);
+    background-color: #6B5886;
+    border: solid;
+    border-width: 1px;
+    border-color: snow;
+    color: snow;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logOutButton:hover::before {
+    opacity: 1;
+}
+
+p.board {
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+.newBoardButton {
+    width: 150px;
+    color: snow;
+    background-color: #1E1436;
+    border: 2px solid snow;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.newBoardButton:hover {
+    background-color: #3d3254;
+}

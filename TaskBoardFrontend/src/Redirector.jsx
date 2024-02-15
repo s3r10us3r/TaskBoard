@@ -6,6 +6,11 @@ async function validateToken() {
     const token = getCookie('token');
     console.log("token: '", token, "'");
 
+    if (!token) {
+        return false;
+    }
+
+
     const response = await fetch(API_PATH + "/Token/validate", {
         method: 'GET',
         headers: {
@@ -24,6 +29,7 @@ async function validateToken() {
     }
     catch (error) {
         console.error('There was a problem with token validation!', error);
+        deleteCookie('token');
         return false;
     }
 }

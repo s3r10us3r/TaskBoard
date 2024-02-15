@@ -1,1 +1,2 @@
 export const API_PATH = "http://localhost:5100/api"
+export const SNOW_THRESHOLD  = 0.7 //in certain elements where the background color is fetched from the API if background lumionosity divided by maximum luminosity (255) is smaller than this constant the text color will be snow otherwise black 
