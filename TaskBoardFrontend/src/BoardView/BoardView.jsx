@@ -3,6 +3,7 @@ import { getCookie, deleteCookie } from "../Services/CookieService";
 import { useNavigate } from "react-router-dom";
 import { API_PATH} from "../constants";
 import './BoardView.css'
+import AddBoard from "./AddBoard";
 
 function BoardView() {
     const navigate = useNavigate();
@@ -52,6 +53,7 @@ function BoardView() {
     }, []);
 
     const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [addBoardOpen, setAddBoardOpen] = useState(false);
 
     function toggleSidebar() {
         setSidebarOpen(prevState => !prevState);
@@ -69,7 +71,7 @@ function BoardView() {
                     <p className="sideBarUserName">{username}</p>
                     <button className="logOutButton" data-tooltip="Log out" onClick={logOut}>x</button>
                 </div>
-                <button className="newBoardButton">+ new board</button>
+                <button className="newBoardButton" onClick={() => {setAddBoardOpen(true)}}>+ new board</button>
                 <div id="boards">
                     {
                         allBoards.map((board, index) => (
@@ -82,7 +84,9 @@ function BoardView() {
                 </div>
                 <div className="sideBarToggle" onClick={toggleSidebar}>{sidebarOpen ? "<" : ">"}</div>
             </div>
-            
+            <div>
+                {addBoardOpen && <AddBoard onClose={() => setAddBoardOpen(false)} />}
+            </div>
         </>
     )
 
