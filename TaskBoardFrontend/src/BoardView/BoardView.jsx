@@ -84,7 +84,9 @@ function BoardView() {
                 </div>
                 <div className="sideBarToggle" onClick={toggleSidebar}>{sidebarOpen ? "<" : ">"}</div>
             </div>
-            <div>
+
+
+            <div className="addBoardContainer">
                 {addBoardOpen && <AddBoard onClose={() => setAddBoardOpen(false)} />}
             </div>
         </>

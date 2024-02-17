@@ -1,2 +1,0 @@
-2024-02-16 19:56:55.538 [INF] TasksController started
-2024-02-16 19:56:55.825 [INF] Access denied for expired token in GetAllBoards: BCrZ2wJceyhfDAvAPj8c2mBvVxvKWhwBStJR4JnB2Vb6ZYBtoVC8Z1PNUV5OeM7i

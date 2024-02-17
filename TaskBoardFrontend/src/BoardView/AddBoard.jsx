@@ -1,15 +1,22 @@
 import PropTypes from 'prop-types';
-import './BoardView.css'
-
+import './AddBoard.css'
+import React, { useState } from 'react';
+import { HuePicker } from 'react-color';
 
 function AddBoard({ onClose }) {
+    const [color, setColor] = useState('#ffffff');
+
+    function handleColorChange(newColor) {
+        console.log(newColor);
+        setColor(newColor.hex);
+    }
+
     return (
         <>
-            <div className="AddBoardPopup">
+            <div>
                 <p>Board name: </p>
-                <input type="text" id="boardName" className="boardNameInput" />
-                <p>Board color: </p>
-                <input type="color" id="boardColor" className="boardColorInput" />
+                <input type="text" id="boardName"/>
+                <HuePicker color={color} onChange={handleColorChange}/>
                 <button>Submit!</button> <button onClick={onClose}>Cancel</button>
             </div>
         </>
