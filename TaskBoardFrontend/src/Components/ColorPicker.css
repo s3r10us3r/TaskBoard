@@ -1,0 +1,18 @@
+.colorSquare {
+    width: 30px;
+    height: 30px;
+    margin: 0px;
+    border: 2px solid transparent;
+}
+
+.colorSquare:hover {
+    border-color: snow;
+    z-index: 1;
+}
+
+.colorPickerRow {
+    padding: 1px;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+}

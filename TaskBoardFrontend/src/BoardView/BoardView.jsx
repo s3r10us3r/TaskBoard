@@ -20,7 +20,6 @@ function BoardView() {
                 const fetchedUsername = await getUsername(token)
                     .catch(exception => {
                         console.error(exception);
-                        console.log("this here happened");
                         deleteCookie('token');
                         window.location.href = "/";
                         return;
@@ -29,7 +28,6 @@ function BoardView() {
 
                 const fetchedBoards = await getAllBoards(token)
                     .catch(exception => {
-                        console.error("this here happened 2");
                         console.error(exception);
                         deleteCookie('token');
                         window.location.href = "/";
