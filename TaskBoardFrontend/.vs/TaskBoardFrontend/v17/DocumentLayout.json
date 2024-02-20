@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\boardview.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\boardview.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\boardview.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\boardview.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\components\\colorpicker.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\components\\colorpicker.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\components\\huecolor.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\components\\huecolor.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\boardview.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\boardview.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\boardview.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\boardview.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\addboard.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -70,17 +70,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "BoardView.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\BoardView.jsx",
               "RelativeDocumentMoniker": "src\\BoardView\\BoardView.jsx",
               "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\BoardView.jsx",
               "RelativeToolTip": "src\\BoardView\\BoardView.jsx",
-              "ViewState": "AQIAAGQAAAAAAAAAAAAQwBYAAAAAAAAA",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAYwBYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2024-02-13T14:49:38.201Z",
               "IsPinned": true,
@@ -88,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "BoardView.css",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\BoardView.css",
               "RelativeDocumentMoniker": "src\\BoardView\\BoardView.css",
@@ -102,26 +102,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "ColorPicker.css",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\Components\\ColorPicker.css",
               "RelativeDocumentMoniker": "src\\Components\\ColorPicker.css",
               "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\Components\\ColorPicker.css",
               "RelativeToolTip": "src\\Components\\ColorPicker.css",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAARAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-02-19T14:49:21.393Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "HueColor.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\Components\\HueColor.jsx",
               "RelativeDocumentMoniker": "src\\Components\\HueColor.jsx",
               "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\Components\\HueColor.jsx",
               "RelativeToolTip": "src\\Components\\HueColor.jsx",
-              "ViewState": "AQIAABEAAAAAAAAAAAAowBUAAAAAAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACAAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2024-02-19T11:34:34.902Z",
               "EditorCaption": ""

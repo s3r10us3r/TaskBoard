@@ -14,26 +14,26 @@ function HueColor({ onChange, colors }) {
     const colorSquares1 = [];
     const colorSquares2 = [];
     for (let i = 0; i < colors.length / 2; i++) {
-        let color = colors[i];//TODO: ADD STYLE CHANGE WHEN CLICKED
+        let color = colors[i];
         colorSquares1.push(
-            <div key={i} className="colorSquare" style={{ backgroundColor: `rgb(${color[0]}, ${color[1]}, ${color[2]}` }} onClick={() => { onChange(color) }} />
+            <div key={i} className={"colorSquare" + (chosenIndex == i ? " chosen" : "")} style={{ backgroundColor: `rgb(${color[0]}, ${color[1]}, ${color[2]}` }} onClick={() => { onChange(color); setChosenIndex(i) }} />
             )
     }
 
     for (let i = colors.length / 2; i < colors.length; i++) {
         let color = colors[i];
         colorSquares2.push(
-            <div key={i} className="colorSquare" style={{ backgroundColor: `rgb(${color[0]}, ${color[1]}, ${color[2]}` }} onClick={() => { onChange(color) }} />
+            <div key={i} className={"colorSquare" + (chosenIndex == i ? " chosen" : "")} style={{ backgroundColor: `rgb(${color[0]}, ${color[1]}, ${color[2]}` }} onClick={() => { onChange(color); setChosenIndex(i) }} />
         )
     }
     return (
         <div>
-            <div className="colorPickerRow" style={{width: colors.length/2 * 50, height: 30} }>
+            <div className="colorPickerRow" style={{ borderBottomWidth: 0, width: colors.length / 2 * 30 }} >
                 {
                     colorSquares1
                 }
             </div>
-            <div className="colorPickerRow" style={{ width: colors.length / 2 * 50, height: 30 }} >
+            <div className="colorPickerRow" style={{ borderTopWidth: 0, width: colors.length / 2 * 30 }}>
                 {
                     colorSquares2
                 }
