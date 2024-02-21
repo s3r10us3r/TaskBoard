@@ -1,28 +1,63 @@
 import PropTypes from 'prop-types';
 import './AddBoard.css'
-import React, { useState } from 'react';
-import HueColor from '../Components/HueColor';
+import { useState } from 'react';
+import ColorPicker from '../Components/ColorPicker';
 
 function AddBoard({ onClose }) {
-    const [color, setColor] = useState('#000000');
+    const [color, setColor] = useState('');
+    const [boardName, setBoardName] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleColorChange = (newColor) => {
         setColor(rgbToHex(newColor[0], newColor[1], newColor[2]));
-        console.log(newColor);
     };
 
     return (
-        <div>
-            <h1>Hue Picker Example</h1>
-            <div style={{ backgroundColor: color, height: '200px' }}></div>
-            <HueColor onChange={handleColorChange} colors={[[175, 0, 0], [0, 0, 175], [0, 175, 0], [200, 200, 0], [0, 0, 0], [155, 155, 155], [255, 255, 255], [173, 216, 230], [245, 163, 62], [30, 20, 54]] } />
+        <div className="AddBoardPopup">
+            <div>
+                <p>Board name:</p>
+                <input type="text"
+                    onChange={(event) => {setBoardName(event.target.value) }}
+                />
+            </div>
+            <ColorPicker onChange={handleColorChange} />
+            <button className="createBoard">Create board!</button>
+            <p className="errorMessage">{errorMessage}</p>
         </div>
     );
+
+
+    function verifyInputs() {
+        if (color === '') {
+            setErrorMessage('You must choose a background color!');
+            return false;
+        }
+        if (boardName.length < 1) {
+            setErrorMessage('You must provide a name!')
+            return false;
+        }
+        if (boardName.length > 50) {
+            setErrorMessage('Board name is too long!')
+            return false;
+        }
+
+        setErrorMessage('');
+        return true;
+    }
+
+    function crateBoard() {
+        if (!verifyInputs()) {
+            return;
+        }
+    }
 }
 
 AddBoard.propTypes = {
     onClose: PropTypes.func.isRequired
 }
+
+
+
 
 function rgbToHex(r, g, b) {
     let hexR = r.toString(16).padStart(2, '0');

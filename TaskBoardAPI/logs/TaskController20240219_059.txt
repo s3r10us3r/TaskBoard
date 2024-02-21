@@ -1,2 +1,0 @@
-2024-02-19 19:08:06.910 [INF] TasksController started
-2024-02-19 19:19:08.582 [INF] TasksController started

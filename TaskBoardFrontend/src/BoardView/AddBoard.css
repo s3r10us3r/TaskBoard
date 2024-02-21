@@ -4,4 +4,25 @@
     margin: 0 auto;
     height: 300px;
     width: 300px;
+    display: grid;
+    place-items: center;
+}
+
+.createBoard {
+    border: 1px solid snow;
+    color: snow;
+    background-color: #B19CD9;
+    width: 150px;
+    height: 50px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+    .createBoard:active {
+        background-color: #1E1436;
+    }
+
+.errorMessage {
+    color: red;
 }
