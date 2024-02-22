@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import './AddBoard.css'
 import { useState } from 'react';
 import ColorPicker from '../Components/ColorPicker';
+import { API_PATH } from '../constants';
+import { getCookie } from '../Services/CookieService';
 
 function AddBoard({ onClose }) {
     const [color, setColor] = useState('');
@@ -21,7 +23,7 @@ function AddBoard({ onClose }) {
                 />
             </div>
             <ColorPicker onChange={handleColorChange} />
-            <button className="createBoard">Create board!</button>
+            <button className="createBoard" onClick={createBoard}>Create board!</button>
             <p className="errorMessage">{errorMessage}</p>
         </div>
     );
@@ -45,8 +47,41 @@ function AddBoard({ onClose }) {
         return true;
     }
 
-    function crateBoard() {
+    async function createBoard() {
         if (!verifyInputs()) {
+            return;
+        }
+
+        try {
+            const requestBody = {
+                BoardName: boardName,
+                BackgroundColor: color
+            }
+
+            const response = await fetch(API_PATH + "/Tasks/addBoard", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json', 
+                    token: getCookie('token')
+                },
+                body: JSON.stringify( requestBody )
+                
+            })
+
+            if (response.ok) {
+                //we have to make it so boards up date in the side bar useContext is good here i think
+                console.log("board added");
+                onClose();
+            }
+            else {
+                let objectResponse = await response.json();
+                setErrorMessage("Unexpected error occured, try again later!");
+                console.error(objectResponse);
+            }
+        }
+        catch (error) {
+            console.error(error);
+            setErrorMessage("Unexpected error occured, try again later!");
             return;
         }
     }
@@ -55,8 +90,6 @@ function AddBoard({ onClose }) {
 AddBoard.propTypes = {
     onClose: PropTypes.func.isRequired
 }
-
-
 
 
 function rgbToHex(r, g, b) {
