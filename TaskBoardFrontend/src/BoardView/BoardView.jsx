@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { API_PATH} from "../constants";
 import './BoardView.css'
 import AddBoard from "./AddBoard";
+import BoardComponent from "./BoardComponent";
 
 function BoardView() {
     const navigate = useNavigate();
@@ -12,6 +13,9 @@ function BoardView() {
     const [username, setUsername] = useState("");
     const [allBoards, setAllBoards] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const [chosenBoard, chooseBoard] = useState(-1);
+
     useEffect(() => {
         async function fetchSideBarData() { 
             console.log("use effect is running");
@@ -73,7 +77,7 @@ function BoardView() {
                 <div id="boards">
                     {
                         allBoards.map((board, index) => (
-                            <div className="boardContainer" key={index}>
+                            <div className="boardContainer" key={index} onClick={() => {chooseBoard(board.boardID)} }>
                                 <div className="boardSquare" style={{backgroundColor: board.backgroundColor}} />
                                 <p className="boardText">{board.boardName}</p>
                                 <button className="boardDeleteButton" onClick={() => { deleteBoard(index) }}>X</button>
@@ -88,6 +92,8 @@ function BoardView() {
             <div className="addBoardContainer">
                 {addBoardOpen && <AddBoard onClose={() => setAddBoardOpen(false)} setAllBoards = {setAllBoards} />}
             </div>
+
+            {chosenBoard != -1 && <BoardComponent boardID={chosenBoard} /> }
         </>
     )
 

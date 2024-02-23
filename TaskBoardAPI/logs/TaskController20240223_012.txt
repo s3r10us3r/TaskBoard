@@ -1,2 +1,0 @@
-2024-02-23 13:56:49.176 [INF] TasksController started
-2024-02-23 13:56:49.198 [INF] Invalid boardID provided to DeleteBoard method
