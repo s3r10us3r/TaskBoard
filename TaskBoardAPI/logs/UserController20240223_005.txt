@@ -1,0 +1,2 @@
+2024-02-23 13:56:46.522 [INF] UserController started
+2024-02-23 13:56:57.930 [INF] UserController started

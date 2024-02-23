@@ -111,7 +111,7 @@ namespace TaskBoardAPI.Controllers
             Board? boardToDelete = _dbContext.Boards.Find(boardID);
             if (boardToDelete == null)
             {
-                Log.Information("Invalid boardID provided to DeleteBoard method");
+                Log.Information("Invalid boardID provided to DeleteBoard method {boardID}", boardID);
                 return BadRequest(new { Message = "Invalid board ID" });
             }
             if (boardToDelete.UserID != authToken.UserID)
@@ -127,6 +127,7 @@ namespace TaskBoardAPI.Controllers
                 int rowsDeleted = _dbContext.Tasks.Where(task => EF.Property<int>(column, "ColumnID") == column.ColumnID).ExecuteDelete();
                 _dbContext.Remove(column);
             }
+            _dbContext.Remove(boardToDelete);
             try
             {
                 _dbContext.SaveChanges();

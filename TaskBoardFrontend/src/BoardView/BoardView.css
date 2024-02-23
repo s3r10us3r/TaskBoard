@@ -108,6 +108,8 @@
 }
 p.boardText {
     width: 100px;
+    max-width: 100px;
+    word-wrap: anywhere;
 }
 
 .boardContainer {
@@ -123,4 +125,15 @@ p.boardText {
 
 .boardContainer:hover {
     background-color: #3d3254;
+}
+
+.boardDeleteButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid snow;
+    border-radius: 50%;
+    width:20px;
+    height:20px;
+    cursor: pointer;
 }

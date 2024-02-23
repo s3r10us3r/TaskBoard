@@ -1,4 +1,5 @@
 .AddBoardPopup {
+    position:relative;
     border: 5px solid snow;
     background-color: #271a38;
     margin: 0 auto;
@@ -25,4 +26,20 @@
 
 .errorMessage {
     color: red;
+}
+
+.closeButton {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    background-color:red;
+    color: snow;
+    border: 1px solid snow;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

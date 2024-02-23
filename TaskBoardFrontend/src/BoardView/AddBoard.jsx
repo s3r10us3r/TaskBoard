@@ -5,7 +5,7 @@ import ColorPicker from '../Components/ColorPicker';
 import { API_PATH } from '../constants';
 import { getCookie } from '../Services/CookieService';
 
-function AddBoard({ onClose }) {
+function AddBoard({ onClose, setAllBoards }) {
     const [color, setColor] = useState('');
     const [boardName, setBoardName] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -16,6 +16,7 @@ function AddBoard({ onClose }) {
 
     return (
         <div className="AddBoardPopup">
+            <button className="closeButton" onClick={onClose}>X</button>
             <div>
                 <p>Board name:</p>
                 <input type="text"
@@ -69,8 +70,9 @@ function AddBoard({ onClose }) {
             })
 
             if (response.ok) {
-                //we have to make it so boards up date in the side bar useContext is good here i think
-                console.log("board added");
+                const newBoardObject = await response.json();
+                setAllBoards(prevList => [...prevList, newBoardObject])
+                console.log("board added", newBoardObject);
                 onClose();
             }
             else {
@@ -88,7 +90,8 @@ function AddBoard({ onClose }) {
 }
 
 AddBoard.propTypes = {
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    setAllBoards: PropTypes.func.isRequired,
 }
 
 
