@@ -71,7 +71,7 @@ function AddBoard({ onClose, setAllBoards }) {
 
             if (response.ok) {
                 const newBoardObject = await response.json();
-                setAllBoards(prevList => [...prevList, newBoardObject])
+                setAllBoards(prevList => [...prevList, newBoardObject]);
                 console.log("board added", newBoardObject);
                 onClose();
             }

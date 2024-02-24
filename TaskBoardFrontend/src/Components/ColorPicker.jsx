@@ -7,7 +7,6 @@ function ColorPicker({ onChange, colors }) {
     if (colors.length % 2 == 1) {
         throw new Error("Number of colors must be even!");
     }  
-    console.log("colors:", colors);
 
     const [chosenIndex, setChosenIndex] = useState(-1);
 

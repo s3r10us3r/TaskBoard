@@ -4,13 +4,15 @@ import { API_PATH } from "../constants";
 import { useEffect } from "react";
 import PropTypes from 'prop-types';
 import './BoardComponent.css';
-
+import ColumnComponent from "./ColumnComponent";
+import AddColumn from "./AddColumn";
 function BoardComponent({ boardID }) {
     const token = getCookie('token');
     const [board, setBoard] = useState(null);
-    const [columns, setColumns] = useState(null);
+    const [columns, setColumns] = useState([]);
 
     const [loading, setLoading] = useState(true);
+    const [addColumnOpen, setAddColumnOpen] = useState(false);
 
     useEffect(() => {
         getBoardWithComponents(boardID);
@@ -37,7 +39,7 @@ function BoardComponent({ boardID }) {
             const responseObject = await response.json();
             console.log(responseObject);
             setBoard(responseObject.board);
-            setColumns(responseObject.Columns);
+            setColumns(responseObject.columns);
             setLoading(false);
         }
         else {
@@ -50,10 +52,23 @@ function BoardComponent({ boardID }) {
             <div>Loading...</div>
         )
     }
-
+    console.log(columns);
+    console.log("Last column:", columns[columns.length - 1]);
+    console.log("Columns length: ", columns.length);
+    const columnOrder = (columns.length > 0 ? (columns[columns.length - 1].boardColumn.columnOrder + 1) : 0);
+    console.log("columnOrder " + columnOrder);
     return (
         <div className="mainBoardContainer" style={{ backgroundColor: board.backgroundColor }}>
-            
+            {
+                columns.map((column, index) => {
+                    return <ColumnComponent key={index} content={column} />
+                })
+            }
+
+            <button className="addColumnButton" onClick={() => {setAddColumnOpen(true) } }>+</button>
+            <div className="addBoardContainer">
+                {addColumnOpen && <AddColumn onClose={() => setAddColumnOpen(false)} setColumns={setColumns} boardID={board.boardID} columnOrder={columnOrder} />}
+            </div>
         </div>
     )
 

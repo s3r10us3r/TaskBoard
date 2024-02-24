@@ -1,0 +1,1 @@
+2024-02-24 15:11:10.052 [INF] UserController started

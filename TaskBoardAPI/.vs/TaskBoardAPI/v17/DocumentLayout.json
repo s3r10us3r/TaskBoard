@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\controllers\\tokencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:controllers\\tokencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\models\\boardmodelid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:models\\boardmodelid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\models\\boardcolumn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:models\\boardcolumn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\models\\boardandcontents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,16 +31,8 @@
       "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:models\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\models\\columnandcontents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:models\\columnandcontents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\models\\taskdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,10 +59,6 @@
       "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:taskboardapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\controllers\\tokencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:controllers\\tokencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0CF0E164-0E3F-4904-BECB-214B96513D7C}|TaskBoardAPI.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -74,11 +78,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "BoardColumn.cs",
+              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\BoardColumn.cs",
+              "RelativeDocumentMoniker": "Models\\BoardColumn.cs",
+              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\BoardColumn.cs",
+              "RelativeToolTip": "Models\\BoardColumn.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-24T13:22:38.219Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "BoardModelID.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\BoardModelID.cs",
               "RelativeDocumentMoniker": "Models\\BoardModelID.cs",
@@ -91,7 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "ColumnAndContents.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\ColumnAndContents.cs",
               "RelativeDocumentMoniker": "Models\\ColumnAndContents.cs",
@@ -103,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "BoardAndContents.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\BoardAndContents.cs",
               "RelativeDocumentMoniker": "Models\\BoardAndContents.cs",
@@ -115,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "TaskDBContext.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\TaskDBContext.cs",
               "RelativeDocumentMoniker": "Models\\TaskDBContext.cs",
@@ -127,7 +144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -139,7 +156,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "LogInModel.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\LogInModel.cs",
               "RelativeDocumentMoniker": "Models\\LogInModel.cs",
@@ -151,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Board.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\Board.cs",
               "RelativeDocumentMoniker": "Models\\Board.cs",
@@ -163,7 +180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "AuthToken.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\AuthToken.cs",
               "RelativeDocumentMoniker": "Models\\AuthToken.cs",
@@ -175,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
@@ -183,11 +200,12 @@
               "RelativeToolTip": "Controllers\\UserController.cs",
               "ViewState": "AQIAACkAAAAAAAAAAAAowH8AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-30T11:33:07.609Z"
+              "WhenOpened": "2024-01-30T11:33:07.609Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "TaskBoardAPI.csproj",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\TaskBoardAPI.csproj",
               "RelativeDocumentMoniker": "TaskBoardAPI.csproj",
@@ -199,7 +217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
@@ -211,19 +229,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "TasksController.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Controllers\\TasksController.cs",
               "RelativeDocumentMoniker": "Controllers\\TasksController.cs",
               "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Controllers\\TasksController.cs",
               "RelativeToolTip": "Controllers\\TasksController.cs",
-              "ViewState": "AQIAAPMAAAAAAAAAAAAowGsAAAAAAAAA",
+              "ViewState": "AQIAADMBAAAAAAAAAAAwwDYBAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-05T18:16:19.218Z"
+              "WhenOpened": "2024-02-05T18:16:19.218Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "TaskService.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Services\\TaskService.cs",
               "RelativeDocumentMoniker": "Services\\TaskService.cs",
@@ -235,19 +254,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 1,
               "Title": "TokenController.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Controllers\\TokenController.cs",
               "RelativeDocumentMoniker": "Controllers\\TokenController.cs",
               "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Controllers\\TokenController.cs",
               "RelativeToolTip": "Controllers\\TokenController.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAYwCYAAAAFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-31T12:09:06.184Z"
+              "WhenOpened": "2024-01-31T12:09:06.184Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "BoardModel.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\BoardModel.cs",
               "RelativeDocumentMoniker": "Models\\BoardModel.cs",
@@ -259,7 +279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "TokenResponse.cs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\TokenResponse.cs",
               "RelativeDocumentMoniker": "Models\\TokenResponse.cs",

@@ -34,11 +34,6 @@
         "IsRequired": false
       },
       {
-        "Name": "boardID",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "column",
         "Type": "TaskBoardAPI.Models.BoardColumn",
         "IsRequired": true

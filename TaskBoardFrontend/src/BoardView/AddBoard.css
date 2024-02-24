@@ -1,12 +1,13 @@
 .AddBoardPopup {
     position:relative;
     border: 5px solid snow;
-    background-color: #271a38;
+    background-color: black;
     margin: 0 auto;
     height: 300px;
     width: 300px;
     display: grid;
     place-items: center;
+    z-index:0;
 }
 
 .createBoard {

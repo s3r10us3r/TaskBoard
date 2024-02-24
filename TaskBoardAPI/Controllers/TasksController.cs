@@ -284,7 +284,7 @@ namespace TaskBoardAPI.Controllers
 
         [HttpPost]
         [Route("addColumn")]
-        public IActionResult AddEmptyColumn([FromHeader] string token, [FromQuery] int boardID, [FromBody] BoardColumn column)
+        public IActionResult AddEmptyColumn([FromHeader] string token, [FromBody] BoardColumn column)
         {
             if (!ModelState.IsValid)
             {
@@ -308,6 +308,7 @@ namespace TaskBoardAPI.Controllers
             AuthToken authToken = _dbContext.Tokens.Find(token);
 
             int userID = authToken.UserID;
+            int boardID = column.BoardID;
 
             Board? board = _dbContext.Boards.Find(boardID);
 
@@ -334,7 +335,7 @@ namespace TaskBoardAPI.Controllers
             }
 
             Log.Information("Column {columnID} added to board {boardID}", column.ColumnID, boardID);
-            return new ObjectResult(column.ColumnID);
+            return new ObjectResult(column);
         }
 
         [HttpPost]
