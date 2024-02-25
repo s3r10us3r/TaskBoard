@@ -20,7 +20,7 @@ function AddColumn({ onClose, setColumns, boardID, columnOrder }) {
         <div className="AddBoardPopup">
             <button className="closeButton" onClick={onClose}>X</button>
             <div>
-                <p>Board name:</p>
+                <p>Column name:</p>
                 <input type="text"
                     onChange={(event) => { setColumnName(event.target.value) }}
                 />

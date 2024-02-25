@@ -26,7 +26,6 @@ namespace TaskBoardAPI.Controllers
                 .WriteTo.Console()
                 .WriteTo.File("logs/TaskController.txt", rollingInterval: RollingInterval.Day, outputTemplate: loggingOutputTemplate)             
                 .CreateLogger();
-            Log.Information("TasksController started");
             _dbContext = dBContext;
             this.tokenService = tokenService;
             this.taskService = taskService;
@@ -124,7 +123,7 @@ namespace TaskBoardAPI.Controllers
             foreach (BoardColumn column in columnsToBeDeleted)
             {
                 //I think this might be bad practice, since it might lead to bizzare situations where tasks get deleted when other components are not 
-                int rowsDeleted = _dbContext.Tasks.Where(task => EF.Property<int>(column, "ColumnID") == column.ColumnID).ExecuteDelete();
+                int rowsDeleted = _dbContext.Tasks.Where(task => EF.Property<int>(task, "ColumnID") == column.ColumnID).ExecuteDelete();
                 _dbContext.Remove(column);
             }
             _dbContext.Remove(boardToDelete);

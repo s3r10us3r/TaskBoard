@@ -80,7 +80,7 @@ function BoardView() {
                             <div className="boardContainer" key={index} onClick={() => {chooseBoard(board.boardID)} }>
                                 <div className="boardSquare" style={{backgroundColor: board.backgroundColor}} />
                                 <p className="boardText">{board.boardName}</p>
-                                <button className="boardDeleteButton" onClick={() => { deleteBoard(index) }}>X</button>
+                                <button className="boardDeleteButton" onClick={(e) => { e.stopPropagation(); chooseBoard(-1); deleteBoard(index); }}>X</button>
                             </div>
                         ))
                     }

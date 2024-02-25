@@ -23,7 +23,6 @@ namespace TaskBoardAPI.Controllers
                 .WriteTo.Console()
                 .WriteTo.File("logs/UserController.txt", rollingInterval: RollingInterval.Day, outputTemplate: loggingOutputTemplate)
                 .CreateLogger();
-            Log.Information("UserController started");
 
             _dBContext = context;
             this.tokenService = tokenService;

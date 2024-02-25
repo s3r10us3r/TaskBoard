@@ -14,9 +14,13 @@ function BoardComponent({ boardID }) {
     const [loading, setLoading] = useState(true);
     const [addColumnOpen, setAddColumnOpen] = useState(false);
 
+
+
+
     useEffect(() => {
         getBoardWithComponents(boardID);
-    },[])
+    },[boardID])
+
 
     async function getBoardWithComponents(boardID) {
         let response;
@@ -65,7 +69,7 @@ function BoardComponent({ boardID }) {
                 })
             }
 
-            <button className="addColumnButton" onClick={() => {setAddColumnOpen(true) } }>+</button>
+            {!addColumnOpen && <button className="addColumnButton" onClick={() => { setAddColumnOpen(true) }}>+</button>}
             <div className="addBoardContainer">
                 {addColumnOpen && <AddColumn onClose={() => setAddColumnOpen(false)} setColumns={setColumns} boardID={board.boardID} columnOrder={columnOrder} />}
             </div>

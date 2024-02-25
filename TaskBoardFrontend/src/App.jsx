@@ -8,6 +8,7 @@ import Redirector from './Redirector';
 function App() {
 
     return (
+        
         <Router>
             <Routes>
                 <Route path="/" element={<Redirector />} />
