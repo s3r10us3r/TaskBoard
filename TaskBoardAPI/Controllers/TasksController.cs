@@ -87,7 +87,7 @@ namespace TaskBoardAPI.Controllers
 
         [HttpDelete]
         [Route("deleteBoard")]
-        public IActionResult DeleteBoard([FromHeader] string token, [FromQuery] int boardID)
+        public IActionResult DeleteBoard([FromHeader] string token, [FromHeader] int boardID)
         {
             if (!ModelState.IsValid)
             {
@@ -142,7 +142,7 @@ namespace TaskBoardAPI.Controllers
 
         [HttpDelete]
         [Route("deleteColumn")]
-        public IActionResult DeleteColumn([FromHeader] string token, [FromQuery] int columnID)
+        public IActionResult DeleteColumn([FromHeader] string token, [FromHeader] int columnID)
         {
             if (!ModelState.IsValid)
             {
@@ -180,9 +180,21 @@ namespace TaskBoardAPI.Controllers
             }
 
             //this has been null checked in the FindColumnOwner method
-            BoardColumn column = _dbContext.BoardColumns.Find(columnID);
+            BoardColumn? column = _dbContext.BoardColumns.Find(columnID);
 
-            int tasksDeleted = _dbContext.BoardColumns.Where(task => EF.Property<int>(task, "ColumnID") == column.ColumnID).ExecuteDelete();
+            if (column is null)
+            {
+                Log.Warning("COLUMN {columnID} HAS NOT BEEN FOUND", columnID);
+                return BadRequest(new { Message = "this column does not exist!" });
+            }
+
+            List<Task> tasksToDelete = _dbContext.Set<Task>().Where(task => task.ColumnID == columnID).ToList();
+
+            foreach(Task taskToDelete in tasksToDelete)
+            {
+                _dbContext.Tasks.Remove(taskToDelete);
+            }
+
             _dbContext.BoardColumns.Remove(column);
 
             try
@@ -191,8 +203,8 @@ namespace TaskBoardAPI.Controllers
             }
             catch (DbUpdateException e)
             {
-                Log.Error(e, "DATABASE UPDATE EXCEPTION IN DELETE COLUMN {error}");
-                return StatusCode(500, new {Message = "Failed to access database!", Error = e});
+                Log.Error(e, "DATABASE UPDATE EXCEPTION IN DELETE COLUMN!");
+                return StatusCode(500, new {Message = "Failed to access database!"});
             }
 
             Log.Information("Column {columnID} succesfully deleted!", columnID);
@@ -201,7 +213,7 @@ namespace TaskBoardAPI.Controllers
 
         [HttpDelete]
         [Route("deleteTask")]
-        public IActionResult DeleteTask([FromHeader] string token, [FromQuery] int taskID)
+        public IActionResult DeleteTask([FromHeader] string token, [FromHeader] int taskID)
         {
             if (!ModelState.IsValid)
             {

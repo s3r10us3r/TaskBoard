@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import './ColumnComponent.css';
 
-function ColumnComponent({ content }) {
+function ColumnComponent({ content, notifyDrag, notifyRelease }) {
     const columnObj = content.boardColumn;
     const [tasks, setTasks] = useState(content.tasks);
 
@@ -34,9 +34,10 @@ function ColumnComponent({ content }) {
         }
     }
 
-    function handleMouseUp() {
+    function handleMouseUp(e) {
         if (isDragged) {
             setDragged(false);
+            notifyRelease(columnObj.columnID ,{x: e.clientX, y: e.clientY});
             setOffset({ x: 0, y: 0 });
         }
     }
@@ -44,6 +45,7 @@ function ColumnComponent({ content }) {
     function handleMouseDown(e) {
         e.preventDefault();
         setDragged(true);
+        notifyDrag();
         setDragStartPos({
             x: e.clientX,
             y: e.clientY
@@ -77,7 +79,8 @@ ColumnComponent.propTypes = {
             columnOrder: PropTypes.number.isRequired
         }).isRequired,
         tasks: PropTypes.array.isRequired
-    }).isRequired
+    }).isRequired,
+    notifyDrag: PropTypes.func.isRequired
 }
 
 export default ColumnComponent;

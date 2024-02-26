@@ -1,0 +1,2 @@
+2024-02-26 23:44:02.920 [INF] Column 21 succesfully deleted!
+2024-02-26 23:44:42.381 [INF] Column 3 succesfully deleted!

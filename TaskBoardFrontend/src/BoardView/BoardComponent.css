@@ -24,3 +24,22 @@
     border: 1px solid snow;
     cursor: pointer;
 }
+
+.columnBin {
+    margin: 0px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 50vh;
+    background-color: darkred;
+    opacity: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.binIcon {
+    width: 100px;
+    height: 100px;
+}

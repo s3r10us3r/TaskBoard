@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using TaskBoardAPI.Models;
 
 namespace TaskBoardAPI.AuthenticationServices

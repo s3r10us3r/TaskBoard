@@ -120,10 +120,11 @@ function BoardView() {
         const boardToDelete = allBoards[index];
 
         try {
-            const response = await fetch(API_PATH + "/Tasks/deleteBoard" + `?boardID=${boardToDelete.boardID}`, {
+            const response = await fetch(API_PATH + "/Tasks/deleteBoard", {
                 method: 'DELETE',
                 headers: {
                     token: token,
+                    boardID: boardToDelete.boardID
                 }
             });
 

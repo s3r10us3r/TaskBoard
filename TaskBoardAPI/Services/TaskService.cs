@@ -18,7 +18,7 @@ namespace TaskBoardAPI.AuthenticationServices
 
             if (boardColumn is null)
             {
-                throw new ArgumentException("The column provided does not exist!");
+                return null;
             }
 
             Board? board = _dbContext.Boards.Find(boardColumn.BoardID);

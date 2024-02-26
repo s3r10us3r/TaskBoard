@@ -13,7 +13,7 @@ function BoardComponent({ boardID }) {
 
     const [loading, setLoading] = useState(true);
     const [addColumnOpen, setAddColumnOpen] = useState(false);
-
+    const [isBinOpen, setBinOpen] = useState(false);
 
 
 
@@ -65,7 +65,7 @@ function BoardComponent({ boardID }) {
         <div className="mainBoardContainer" style={{ backgroundColor: board.backgroundColor }}>
             {
                 columns.map((column, index) => {
-                    return <ColumnComponent key={index} content={column} />
+                    return <ColumnComponent key={index} content={column} notifyDrag={() => { setBinOpen(true) }} notifyRelease={handleColumnDrop} />
                 })
             }
 
@@ -73,10 +73,42 @@ function BoardComponent({ boardID }) {
             <div className="addBoardContainer">
                 {addColumnOpen && <AddColumn onClose={() => setAddColumnOpen(false)} setColumns={setColumns} boardID={board.boardID} columnOrder={columnOrder} />}
             </div>
+
+            {
+                isBinOpen &&
+                <div className="columnBin">
+                    <img className="binIcon" src="recycle-bin.png"/>
+                </div>
+            }
         </div>
     )
 
+    async function handleColumnDrop(columnID, position) {
+        setBinOpen(false);
+        if (position.y > window.innerHeight * 0.5) {
+            const request = {
+                method: 'DELETE',
+                headers: {
+                    token: token,
+                    columnID: columnID
+                }
+            };
 
+            try {
+                const response = await fetch(API_PATH + "/Tasks/deleteColumn", request);
+                if (response.ok) {
+                    const newColumns = columns.filter(column => column.boardColumn.columnID !== columnID);
+                    setColumns(newColumns);
+                }
+                else {
+                    const responseObject = response.json();
+                    console.error(responseObject);
+                }
+            } catch (exception) {
+                console.error(exception);
+            }
+        }
+    }
 }
 
 BoardComponent.propTypes = {
