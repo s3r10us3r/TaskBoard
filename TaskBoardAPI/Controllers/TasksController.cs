@@ -515,11 +515,17 @@ namespace TaskBoardAPI.Controllers
             try
             {
                 BoardColumn originalColumn = _dbContext.BoardColumns.Find(updatedColumn.ColumnID);
+
+                string prevName = originalColumn.ColumnName;
+                string prevColor = originalColumn.ColumnColor;
+                int prevOrder = originalColumn.ColumnOrder;
+
                 originalColumn.ColumnName = updatedColumn.ColumnName;
                 originalColumn.ColumnColor = updatedColumn.ColumnColor;
                 originalColumn.ColumnOrder = updatedColumn.ColumnOrder;
 
                 _dbContext.SaveChanges();
+                Log.Information("ColumnID {columnID} had its properties changed to: name: {columnName} color: {columnColor} order: {columnOrder} from: {oldColumnName} color: {oldColumnColor} order: {oldColumnOrder}", originalColumn.ColumnID, originalColumn.ColumnName, originalColumn.ColumnColor, originalColumn.ColumnOrder, prevName, prevColor, prevOrder);
                 return Ok(new { Message = "Column edited succesfully!" });
             }
             catch (DbException e)

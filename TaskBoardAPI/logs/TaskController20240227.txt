@@ -1,0 +1,17 @@
+2024-02-27 15:38:18.629 [INF] Column 22 added to board 1015
+2024-02-27 15:38:24.997 [INF] Column 23 added to board 1015
+2024-02-27 15:40:21.968 [INF] Column 24 added to board 1015
+2024-02-27 17:48:25.501 [INF] ColumnID 24 had its properties changed to: hhg #0000af 2
+2024-02-27 17:48:25.501 [INF] ColumnID 23 had its properties changed to: second column #af0000 1
+2024-02-27 17:48:25.501 [INF] ColumnID 22 had its properties changed to: first column #ffa500 0
+2024-02-27 17:51:57.256 [INF] ColumnID 23 had its properties changed to: name: second column color: #af0000 order: 1 from: second column color: 1 order: #af0000
+2024-02-27 17:51:57.256 [INF] ColumnID 24 had its properties changed to: name: hhg color: #0000af order: 2 from: hhg color: 2 order: #0000af
+2024-02-27 17:54:07.167 [INF] ColumnID 22 had its properties changed to: name: first column color: #ffa500 order: 2 from: first column color: #ffa500 order: 0
+2024-02-27 17:54:07.167 [INF] ColumnID 24 had its properties changed to: name: hhg color: #0000af order: 1 from: hhg color: #0000af order: 2
+2024-02-27 17:54:07.167 [INF] ColumnID 23 had its properties changed to: name: second column color: #af0000 order: 0 from: second column color: #af0000 order: 1
+2024-02-27 17:57:34.488 [INF] ColumnID 22 had its properties changed to: name: first column color: #ffa500 order: 1 from: first column color: #ffa500 order: 2
+2024-02-27 17:57:34.488 [INF] ColumnID 23 had its properties changed to: name: second column color: #af0000 order: 2 from: second column color: #af0000 order: 0
+2024-02-27 17:57:34.488 [INF] ColumnID 24 had its properties changed to: name: hhg color: #0000af order: 0 from: hhg color: #0000af order: 1
+2024-02-27 17:57:40.345 [INF] ColumnID 24 had its properties changed to: name: hhg color: #0000af order: 2 from: hhg color: #0000af order: 0
+2024-02-27 17:57:40.345 [INF] ColumnID 22 had its properties changed to: name: first column color: #ffa500 order: 0 from: first column color: #ffa500 order: 1
+2024-02-27 17:57:40.345 [INF] ColumnID 23 had its properties changed to: name: second column color: #af0000 order: 1 from: second column color: #af0000 order: 2
