@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
 import { forwardRef, useEffect, useState } from 'react';
 import './ColumnComponent.css';
+import EditColumn from './EditColumn';
 
-const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease }, ref) => {
-    const columnObj = content.boardColumn;
+const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease}, ref) => {
+    const [columnObj, setColumnObj] = useState(content.boardColumn);
     const [tasks, setTasks] = useState(content.tasks);
 
     const [isDragged, setDragged] = useState(false);
     const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
     const [offset, setOffset] = useState({ x: 0, y: 0 });
+    const [isEdited, setIsEdited] = useState(false);
 
     useEffect(() => {
         if (isDragged) {
@@ -52,19 +54,20 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease }, ref)
         })
     }
 
-
-
     console.log("Column component rendered");
 
     return (
         <div ref={ref} className="columnComponent" style={{ transform: `translate(${offset.x}px, ${offset.y}px)`, zIndex: isDragged ? 100 : 'auto' }}>
             <div className="columnHeader">
                 <div className="colorBar" style={{ backgroundColor: columnObj.columnColor }} onMouseDown={handleMouseDown} />
+                <p onClick={() => {setIsEdited(true)} } className="editColumnButton">...</p>
                 <p className="columnTitle">{columnObj.columnName}</p>
             </div>
             <div className="columnBody">
 
             </div>
+
+            {isEdited && <EditColumn onClose={() => { setIsEdited(false) }} column={columnObj} setColumn={setColumnObj} />}
         </div>
     )
 })
