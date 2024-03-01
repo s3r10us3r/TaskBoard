@@ -14,7 +14,7 @@ namespace TaskBoardAPI.Models
         [Required]
         [StringLength(50)]
         public string TaskName { get; set; }
-        [StringLength(255)]
+        [StringLength(1000)]
         public string TaskDescription { get; set; }
         [Required]
         [StringLength(7)]

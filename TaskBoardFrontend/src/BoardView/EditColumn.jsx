@@ -4,9 +4,8 @@ import './AddBoard.css'
 import { getCookie } from '../Services/CookieService';
 import { API_PATH } from '../constants';
 import PropTypes from 'prop-types';
-import ColumnComponent from './ColumnComponent';
 
-function EditColumn({ onClose, column, setColumn }) {
+function EditColumn({ onClose, column}) {
     const [color, setColor] = useState('');
     const [columnName, setColumnName] = useState(column.columnName);
     const [errorMessage, setErrorMessage] = useState('')
@@ -94,7 +93,6 @@ EditColumn.propTypes = {
         columnColor: PropTypes.string.isRequired,
         columnOrder: PropTypes.number.isRequired
     }),
-    setColumn: PropTypes.func.isRequired
 }
 
 function rgbToHex(r, g, b) {

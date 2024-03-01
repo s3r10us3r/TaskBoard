@@ -64,10 +64,11 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease}, ref) 
                 <p className="columnTitle">{columnObj.columnName}</p>
             </div>
             <div className="columnBody">
-
+                <div className="taskHolder">
+                </div>
             </div>
 
-            {isEdited && <EditColumn onClose={() => { setIsEdited(false) }} column={columnObj} setColumn={setColumnObj} />}
+            {isEdited && <EditColumn onClose={() => { setIsEdited(false) }} column={columnObj} />}
         </div>
     )
 })
