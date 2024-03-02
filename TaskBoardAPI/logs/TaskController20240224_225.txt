@@ -1,2 +1,0 @@
-2024-02-24 17:35:44.978 [INF] TasksController started
-2024-02-24 17:35:45.032 [INF] Column 7 added to board 1015

@@ -1,2 +1,0 @@
-2024-02-26 23:41:14.631 [INF] Column 6 succesfully deleted!
-2024-02-26 23:43:03.453 [INF] Column 20 added to board 1015

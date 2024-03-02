@@ -29,10 +29,12 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease}, ref) 
 
     function handleMouseMove(e) {
         if (isDragged) {
-            setOffset({
+            const newOffset = {
                 x: e.clientX - dragStartPos.x,
                 y: e.clientY - dragStartPos.y
-            });
+            }
+            console.log(newOffset);
+            setOffset(newOffset);
         }
     }
 
@@ -66,6 +68,7 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease}, ref) 
             <div className="columnBody">
                 <div className="taskHolder">
                 </div>
+                <button className="addTaskButton">+</button>
             </div>
 
             {isEdited && <EditColumn onClose={() => { setIsEdited(false) }} column={columnObj} />}

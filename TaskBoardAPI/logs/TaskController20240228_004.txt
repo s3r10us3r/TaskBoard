@@ -1,4 +1,0 @@
-2024-02-28 18:02:32.725 [INF] ColumnID 24 had its properties changed to: name: hhg color: #0000af order: 2 from: hhg color: #0000af order: 2
-2024-02-28 18:05:43.803 [INF] ColumnID 24 had its properties changed to: name: hhg color: #0000af order: 2 from: hhg color: #0000af order: 2
-2024-02-28 18:06:55.402 [INF] ColumnID 24 had its properties changed to: name: hhg color: #0000af order: 2 from: hhg color: #0000af order: 2
-2024-02-28 18:10:55.598 [INF] ColumnID 24 had its properties changed to: name: EDIT color: #af0000 order: 2 from: hhg color: #0000af order: 2

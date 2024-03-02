@@ -3,6 +3,7 @@ import { useState } from "react";
 import ColorPicker from "../Components/ColorPicker";
 import { getCookie } from "../Services/CookieService";
 import { API_PATH } from "../constants";
+import "./TaskCreator.css";
 
 //task order ought to be number of tasks + 1
 function TaskCreator(columnID, taskOrder, onClose, setTasks) {

@@ -11,11 +11,13 @@ function ColorPicker({ onChange, colors, chosenColor }) {
     const chosenRGB = chosenColor ? hexToRgb(chosenColor) : null;
 
     let initIndex = -1;
-    colors.map((color, index) => {
-        if (color[0] === chosenRGB[0] && color[1] === chosenRGB[1] && chosenRGB[2] === color[2]) {
-            initIndex = index;
-        }
-    });
+    if (chosenRGB) {
+        colors.map((color, index) => {
+            if (color[0] === chosenRGB[0] && color[1] === chosenRGB[1] && chosenRGB[2] === color[2]) {
+                initIndex = index;
+            }
+        });
+    }
 
     console.log("Init index: ", initIndex);
 

@@ -1,0 +1,3 @@
+2024-03-02 12:54:15.081 [INF] Column 47 succesfully deleted!
+2024-03-02 13:11:50.830 [INF] Column 50 succesfully deleted!
+2024-03-02 13:14:57.011 [INF] ColumnID 49 had its properties changed to: name: l, color: #e6e600 order: 1 from: l, color: #e6e600 order: 2

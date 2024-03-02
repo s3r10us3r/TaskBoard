@@ -1,0 +1,54 @@
+.taskCreator {
+    width: 900px;
+    height: 500px;
+    border: 2px solid snow;
+    background-color: #1a1a1a;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    grid-template-columns: 20px 660px 100px 100px 20px;
+    grid-template-rows: 75px 325px 100px;
+}
+
+.taskNameInput {
+    width: 800px;
+    height: 50px;
+    grid-column: span 3/ 2;
+    grid-row: 1;
+    color: snow;
+    background-color: black;
+    border: 1px solid snow;
+}
+
+.descriptionInput {
+    grid-column: span 3/ 2;
+    grid-row: 2;
+    background-color: black;
+    color: snow;
+}
+
+.taskCreateErrorMessage {
+    color: red;
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.taskCreateButton {
+    width: 100px;
+    height: 50px;
+    border: 1px solid snow;
+    font-size: 10px;
+}
+
+.submit {
+    grid-row: 3;
+    grid-column: 3;
+}
+
+.cancel {
+    grid-row: 3;
+    grid-column: 4;
+    background-color: lightcoral;
+}

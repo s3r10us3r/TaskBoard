@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import './BoardComponent.css';
 import ColumnComponent from "./ColumnComponent";
 import AddColumn from "./AddColumn";
+import * as React from "react";
 function BoardComponent({ boardID }) {
     const token = getCookie('token');
     const [board, setBoard] = useState(null);
@@ -24,11 +25,11 @@ function BoardComponent({ boardID }) {
     const columnRefs = useRef([]);
 
     useEffect(() => {
+        columnRefs.current = Array(columns.length).fill().map((_, index) => columnRefs.current[index] || React.createRef());
         const newColumnBoundingBoxes = columnRefs.current.map(ref => {
             return ref ? ref.getBoundingClientRect() : null;
         });
         setColumnBoundingBoxes(newColumnBoundingBoxes);
-        console.log("Column bounding boxes: ", columnBoundingBoxes);
     }, [columns])
 
     async function getBoardWithComponents(boardID) {
@@ -78,7 +79,7 @@ function BoardComponent({ boardID }) {
             {   
                 columns.map((column, index) => {
                     return <ColumnComponent
-                        key={index}
+                        key={column.boardColumn.columnID}
                         ref={el => columnRefs.current[index] = el}
                         content={column}
                         notifyDrag={() => { setBinOpen(true); calculateColumnCenters(); }}
@@ -102,6 +103,8 @@ function BoardComponent({ boardID }) {
     )
 
     async function handleColumnDrop(columnID, position) {
+        console.log(columns);
+
         setBinOpen(false);
         if (position.y > window.innerHeight * 0.5) {
             const request = {
@@ -115,7 +118,10 @@ function BoardComponent({ boardID }) {
             try {
                 const response = await fetch(API_PATH + "/Tasks/deleteColumn", request);
                 if (response.ok) {
+                    console.log("columnID: ", columnID);
                     const newColumns = columns.filter(column => column.boardColumn.columnID !== columnID);
+                    console.log("Columns before deletion: ", columns);
+                    console.log("Columns after deletion: ", newColumns);
                     setColumns(newColumns);
                 }
                 else {
@@ -140,7 +146,7 @@ function BoardComponent({ boardID }) {
             })
 
             const thisColumnIndex = columns.findIndex(column => column.boardColumn.columnID === columnID);
-            if (thisColumnIndex != chosenColumn) {
+            if (thisColumnIndex !== chosenColumn) {
                 const columnOnHold = columns[thisColumnIndex];
 
                 let newColumns = [...columns];
