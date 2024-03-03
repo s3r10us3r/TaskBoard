@@ -8,6 +8,7 @@ import ColumnComponent from "./ColumnComponent";
 import AddColumn from "./AddColumn";
 import * as React from "react";
 import TaskCreator from "./TaskCreator";
+import TaskDisplay from "./TaskDisplay";
 function BoardComponent({ boardID }) {
     const token = getCookie('token');
     const [board, setBoard] = useState(null);
@@ -23,6 +24,12 @@ function BoardComponent({ boardID }) {
     const [taskCreatorColumnID, setTaskCreatorColumnID] = useState(-1);
     const [taskCreatorTaskOrder, setTaskCreatorTaskOrder] = useState(-1);
     const [setTasksFunc, setSetTasksFunc] = useState(null);
+
+    const [isTaskDisplayOpen, openTaskDisplay] = useState(false);
+    const [displayedTask, setDisplayedTask] = useState(null);
+    const [taskSetter, setTaskSetter] = useState(null);
+
+    const [isTaskEditorOpen, setIsTaskEditorOpen] = useState(false);
 
     useEffect(() => {
         getBoardWithComponents(boardID);
@@ -44,6 +51,15 @@ function BoardComponent({ boardID }) {
         }
     }, [taskCreatorColumnID, taskCreatorTaskOrder, setTasksFunc]);
 
+    useEffect(() => {
+        if (displayedTask && taskSetter) {
+            openTaskDisplay(true);
+        }
+        else {
+            openTaskDisplay(false);
+            setIsTaskEditorOpen(false);
+        }
+    }, [displayedTask, taskSetter])
     async function getBoardWithComponents(boardID) {
         let response;
         console.log("token: " + token + " boardID " + boardID);
@@ -87,6 +103,8 @@ function BoardComponent({ boardID }) {
         <div className="mainBoardContainer" style={{ backgroundColor: board.backgroundColor }}>
             {isTaskCreatorOpen && <TaskCreator columnID={taskCreatorColumnID} taskOrder={taskCreatorTaskOrder} setTasks={setTasksFunc} onClose={() => { openTaskCreator(false); setTaskCreatorColumnID(-1); setTaskCreatorTaskOrder(-1); setSetTasksFunc(null); }} />} 
 
+            {isTaskDisplayOpen && !isTaskEditorOpen && <TaskDisplay task={displayedTask} onClose={() => { setTaskSetter(null); setDisplayedTask(null); }} /> }
+
             {   
                 columns.map((column, index) => {
                     return <ColumnComponent
@@ -96,6 +114,7 @@ function BoardComponent({ boardID }) {
                         notifyDrag={() => { setBinOpen(true); calculateColumnCenters(); }}
                         notifyRelease={handleColumnDrop}
                         createTask={createTask}
+                        editTask={editTask}
                     />
                 })
             }
@@ -119,6 +138,17 @@ function BoardComponent({ boardID }) {
         setTaskCreatorTaskOrder(taskOrder);
         setSetTasksFunc(() => setTasks);
         openTaskCreator(true);
+    }
+
+    function editTask(task, setTask) {
+        console.log("Edit task used: ", task, setTask);
+        setDisplayedTask(task);
+        setTaskSetter( () =>  setTask );
+    }
+
+    function closeEditTask() {
+        setDisplayedTask(null);
+        setTaskSetter(null);
     }
 
     async function handleColumnDrop(columnID, position) {

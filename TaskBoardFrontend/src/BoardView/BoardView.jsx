@@ -111,7 +111,6 @@ function BoardView() {
         navigate("/login");
     }
 
-    //TODO: add a popup for board deletion
     async function deleteBoard(index) {
         if (index < 0 || index >= allBoards.length) {
             throw new Error("Invalid index!");
@@ -134,7 +133,6 @@ function BoardView() {
                 setAllBoards(newBoards);
             }
             else {
-                //logOut();
                 const obj = response.json();
                 console.log(boardToDelete.boardID);
                 console.error(obj);

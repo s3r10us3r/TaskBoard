@@ -4,7 +4,7 @@ import './ColumnComponent.css';
 import EditColumn from './EditColumn';
 import TaskComponent from './TaskComponent';
 
-const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, createTask}, ref) => {
+const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, createTask, editTask}, ref) => {
     const columnObj = content.boardColumn;
     const [tasks, setTasks] = useState(content.tasks);
 
@@ -77,7 +77,7 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, create
             
                 {
                     tasks.map((task, index) => {
-                        return <TaskComponent key={index} task={task} />
+                        return <TaskComponent key={index} task={task} edit={editTask} />
                     })
                 }
            
@@ -100,7 +100,8 @@ ColumnComponent.propTypes = {
     }).isRequired,
     notifyDrag: PropTypes.func.isRequired,
     notifyRelease: PropTypes.func.isRequired,
-    createTask: PropTypes.func.isRequired
+    createTask: PropTypes.func.isRequired,
+    editTask: PropTypes.func.isRequired
 }
 
 ColumnComponent.displayName = 'ColumnComponent';

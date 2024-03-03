@@ -4,14 +4,40 @@
     border-radius: 10px;
     margin: 5px;
     color: black;
-    display: flex;
+    display: grid;
     justify-content: left;
     padding: 0px 10px 0px 10px;
     border: 1px solid;
     border-color: transparent;
     text-align: left;
+    grid-template-columns: 200px 50px;
+    cursor: pointer;
+}
+
+.taskName {
+    grid-column: 1;
 }
 
 .taskComponent:hover {
     border-color: snow;
+}
+
+.taskComponent:hover .pencilButtonContainer {
+    visibility: visible;
+}
+
+.pencilButtonContainer {
+    width: 30px;
+    height: 30px;
+    background-color: snow;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+
+.pencilButton {
+    width: 20px;
+    height: 20px;
 }

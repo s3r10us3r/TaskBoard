@@ -1,0 +1,66 @@
+.taskDisplay {
+    width: 900px;
+    height: 500px;
+    border: 2px solid snow;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    grid-template-columns: 20px 660px 100px 100px 20px;
+    grid-template-rows: 20px 75px 325px 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+    margin: 0px;
+    padding: 0px;
+    background-color: #1a1a1a;
+    border-radius: 0;
+}
+
+.title {
+    width: 860px;
+    height: 50px;
+    color: snow;
+    font-size: 25px;
+    border-radius: 5px;
+    grid-column: 2 / 4;
+    grid-row: 2;
+    border-bottom: 2px solid;
+}
+
+.description {
+    width: 860px;
+    height: 325px;
+    border: 0px;
+    border-radius: 5px;
+    grid-column: 2 / 4;
+    grid-row: 3;
+    font-size: 15px;
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-y:auto;
+}
+
+.taskDisplayButton {
+    width: 90px;
+    height: 50px;
+    font-size: 10px;
+    margin: 0px 10px 10px 0px;
+    color: black;
+}
+
+.taskDisplayEdit {
+    background-color: snow;
+    border: 1px solid black;
+    grid-row: 4;
+    grid-column: 3;
+}
+
+.taskDisplayClose {
+    background-color: lightcoral;
+    border: 1px solid black;
+    grid-column: 4;
+    grid-row: 4;
+}
