@@ -1,3 +1,0 @@
-2024-03-02 12:52:17.392 [INF] ColumnID 49 had its properties changed to: name: l, color: #e6e600 order: 2 from: l, color: #e6e600 order: 3
-2024-03-02 12:52:17.459 [INF] ColumnID 47 had its properties changed to: name: dsa color: #0000af order: 1 from: dsa color: #0000af order: 2
-2024-03-02 12:54:06.337 [INF] Column 50 added to board 1015

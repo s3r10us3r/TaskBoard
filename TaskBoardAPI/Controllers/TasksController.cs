@@ -187,13 +187,9 @@ namespace TaskBoardAPI.Controllers
                 Log.Warning("COLUMN {columnID} HAS NOT BEEN FOUND", columnID);
                 return BadRequest(new { Message = "this column does not exist!" });
             }
+            int tasksDeleted = _dbContext.Tasks.Where(task => EF.Property<int>(task, "ColumnID") == column.ColumnID).ExecuteDelete();
 
-            List<Task> tasksToDelete = _dbContext.Set<Task>().Where(task => task.ColumnID == columnID).ToList();
-
-            foreach(Task taskToDelete in tasksToDelete)
-            {
-                _dbContext.Tasks.Remove(taskToDelete);
-            }
+            Log.Information("Deleted {n} tasks from column with id {columnID}", tasksDeleted, column.ColumnID);
 
             _dbContext.BoardColumns.Remove(column);
 
@@ -406,7 +402,7 @@ namespace TaskBoardAPI.Controllers
             }
 
             Log.Information("Task {taskID} added to column {columnID}", task.TaskID, columnID);
-            return new ObjectResult(task.TaskID);
+            return new ObjectResult(task);
         }
 
         [HttpPatch]

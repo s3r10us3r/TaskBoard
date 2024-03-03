@@ -15,7 +15,7 @@ function EditColumn({ onClose, column}) {
     };
 
     return (
-        <div className="AddBoardPopup">
+        <div className="AddBoardPopup" style={{ margin: "30px 0px 0px 30px"} }>
             <button className="closeButton" onClick={onClose}>X</button>
             <div>
                 <p>Column name:</p>

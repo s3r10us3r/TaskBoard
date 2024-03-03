@@ -6,7 +6,7 @@ import { API_PATH } from "../constants";
 import "./TaskCreator.css";
 
 //task order ought to be number of tasks + 1
-function TaskCreator(columnID, taskOrder, onClose, setTasks) {
+function TaskCreator({columnID, taskOrder, setTasks, onClose}) {
     const [taskName, setTaskName] = useState(""); 
     const [taskDescription, setTaskDescription] = useState("");
     const [taskColor, setTaskColor] = useState(undefined);
@@ -18,17 +18,18 @@ function TaskCreator(columnID, taskOrder, onClose, setTasks) {
                 value={taskName}
                 onChange={(event) => { setTaskName(event.target.value) }}
                 className="taskNameInput"
+                maxLength="50"
             />
-            <textarea maxLength="1000" className="descriptionInput" value={taskDescription} onChange={(event) => { setTaskDescription(event.target.value) }} />
-            <ColorPicker onChange={(color) => { setTaskColor(rgbToHex(color)) }} />
+            <textarea maxLength="2048" className="descriptionInput" value={taskDescription} onChange={(event) => { setTaskDescription(event.target.value) }} />
+            <ColorPicker onChange={async (color) => { setTaskColor(rgbToHex(color[0], color[1], color[2])) }} className="colorPicker" />
             <p className="taskCreateErrorMessage"> {errorMessage} </p>
             <button className="taskCreateButton submit" onClick={createTask}>Create task</button>
-            <button className="taskCreateButton cancel" onClick={onClose}>Cancel</button> 
+            <button className="taskCreateButton cancel" onClick={() => { onClose() }}>Cancel</button> 
         </div>
     )
 
     async function createTask() {
-        if (!validateInputs) {
+        if (!validateInputs()) {
             return;
         }
 
@@ -83,10 +84,11 @@ function TaskCreator(columnID, taskOrder, onClose, setTasks) {
     }
 }
 
-TaskCreator.PropTypes = {
+TaskCreator.propTypes = {
     columnID: PropTypes.number.isRequired,
     taskOrder: PropTypes.number.isRequired,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    setTasks: PropTypes.func.isRequired
 }
 
 function rgbToHex(r, g, b) {
@@ -96,3 +98,5 @@ function rgbToHex(r, g, b) {
 
     return '#' + hexR + hexG + hexB;
 }
+
+export default TaskCreator;

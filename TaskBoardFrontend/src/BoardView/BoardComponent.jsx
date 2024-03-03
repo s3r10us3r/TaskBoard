@@ -7,6 +7,7 @@ import './BoardComponent.css';
 import ColumnComponent from "./ColumnComponent";
 import AddColumn from "./AddColumn";
 import * as React from "react";
+import TaskCreator from "./TaskCreator";
 function BoardComponent({ boardID }) {
     const token = getCookie('token');
     const [board, setBoard] = useState(null);
@@ -17,6 +18,11 @@ function BoardComponent({ boardID }) {
     const [isBinOpen, setBinOpen] = useState(false);
     const [columnBoundingBoxes, setColumnBoundingBoxes] = useState([]);
     const [columnCenters, setColumnCenters] = useState([]);
+
+    const [isTaskCreatorOpen, openTaskCreator] = useState(false);
+    const [taskCreatorColumnID, setTaskCreatorColumnID] = useState(-1);
+    const [taskCreatorTaskOrder, setTaskCreatorTaskOrder] = useState(-1);
+    const [setTasksFunc, setSetTasksFunc] = useState(null);
 
     useEffect(() => {
         getBoardWithComponents(boardID);
@@ -31,6 +37,12 @@ function BoardComponent({ boardID }) {
         });
         setColumnBoundingBoxes(newColumnBoundingBoxes);
     }, [columns])
+
+    useEffect(() => {
+        if (taskCreatorColumnID !== -1 && taskCreatorTaskOrder !== -1 && setTasksFunc) {
+            openTaskCreator(true);
+        }
+    }, [taskCreatorColumnID, taskCreatorTaskOrder, setTasksFunc]);
 
     async function getBoardWithComponents(boardID) {
         let response;
@@ -69,13 +81,12 @@ function BoardComponent({ boardID }) {
             <div>Loading...</div>
         )
     }
-    console.log(columns);
-    console.log("Last column:", columns[columns.length - 1]);
-    console.log("Columns length: ", columns.length);
+
     const columnOrder = (columns.length > 0 ? (columns[columns.length - 1].boardColumn.columnOrder + 1) : 0);
-    console.log("columnOrder " + columnOrder);
     return (
         <div className="mainBoardContainer" style={{ backgroundColor: board.backgroundColor }}>
+            {isTaskCreatorOpen && <TaskCreator columnID={taskCreatorColumnID} taskOrder={taskCreatorTaskOrder} setTasks={setTasksFunc} onClose={() => { openTaskCreator(false); setTaskCreatorColumnID(-1); setTaskCreatorTaskOrder(-1); setSetTasksFunc(null); }} />} 
+
             {   
                 columns.map((column, index) => {
                     return <ColumnComponent
@@ -84,6 +95,7 @@ function BoardComponent({ boardID }) {
                         content={column}
                         notifyDrag={() => { setBinOpen(true); calculateColumnCenters(); }}
                         notifyRelease={handleColumnDrop}
+                        createTask={createTask}
                     />
                 })
             }
@@ -101,6 +113,13 @@ function BoardComponent({ boardID }) {
             }
         </div>
     )
+
+    function createTask(columnID, setTasks, taskOrder) {
+        setTaskCreatorColumnID(columnID);
+        setTaskCreatorTaskOrder(taskOrder);
+        setSetTasksFunc(() => setTasks);
+        openTaskCreator(true);
+    }
 
     async function handleColumnDrop(columnID, position) {
         console.log(columns);

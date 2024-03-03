@@ -1,12 +1,21 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import './TaskComponent.css';
 
-function taskComponent(task) {
+function TaskComponent({task}) {
+    const [taskName, setTaskName] = useState(task.taskName);
+    const [taskColor, setTaskColor] = useState(task.taskColor);
+    
+    console.log("Task component rendered: ", taskName);
+
     return (
-        <div></div>
+        <div className="taskComponent" style={{ backgroundColor: taskColor} }>
+            <p>{taskName}</p>
+        </div>
     )
 }
 
-taskComponent.PropTypes = {
+TaskComponent.propTypes = {
     task: PropTypes.shape({
         taskID: PropTypes.number.isRequired,
         columnID: PropTypes.number.isRequired,
@@ -17,4 +26,4 @@ taskComponent.PropTypes = {
     }).isRequired
 }
 
-export default taskComponent;
+export default TaskComponent;

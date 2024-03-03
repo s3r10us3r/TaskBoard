@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './ColorPicker.css'
 
 //colors should be an array of 3 elemental arrays with r,g,b values, the number of colors must be even!
-function ColorPicker({ onChange, colors, chosenColor }) {
+function ColorPicker({ onChange,  className, colors, chosenColor }) {
     if (colors.length % 2 == 1) {
         throw new Error("Number of colors must be even!");
     }  
@@ -39,7 +39,7 @@ function ColorPicker({ onChange, colors, chosenColor }) {
         )
     }
     return (
-        <div>
+        <div className={className}>
             <div className="colorPickerRow" style={{ borderBottomWidth: 0, width: colors.length / 2 * 30 }} >
                 {
                     colorSquares1
@@ -59,12 +59,14 @@ ColorPicker.propTypes = {
     colors: PropTypes.arrayOf(
         PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
     ),
-    chosenColor: PropTypes.string
+    chosenColor: PropTypes.string,
+    className: PropTypes.string
 };
 
 ColorPicker.defaultProps = {
     colors: [[175, 0, 0], [0, 0, 175], [0, 175, 0], [230, 230, 0], [30, 20, 54], [255, 165, 0], [255, 127, 127], [173, 216, 230], [189, 236, 182], [255, 253, 175], [177, 156, 217], [251, 191, 119]],
-    chosenColor: null
+    chosenColor: null,
+    className: ""
 }
 
 export default ColorPicker;

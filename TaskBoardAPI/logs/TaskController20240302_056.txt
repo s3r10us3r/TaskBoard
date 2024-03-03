@@ -1,2 +1,0 @@
-2024-03-02 13:15:15.794 [INF] ColumnID 51 had its properties changed to: name: new color: #ffa500 order: 3 from: new color: #ffa500 order: 2
-2024-03-02 13:15:15.794 [INF] ColumnID 52 had its properties changed to: name: neww color: #0000af order: 2 from: neww color: #0000af order: 3

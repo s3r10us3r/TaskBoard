@@ -1,0 +1,17 @@
+.taskComponent {
+    width: 250px;
+    min-height: 40px;
+    border-radius: 10px;
+    margin: 5px;
+    color: black;
+    display: flex;
+    justify-content: left;
+    padding: 0px 10px 0px 10px;
+    border: 1px solid;
+    border-color: transparent;
+    text-align: left;
+}
+
+.taskComponent:hover {
+    border-color: snow;
+}
