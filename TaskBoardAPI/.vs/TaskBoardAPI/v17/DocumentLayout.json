@@ -86,44 +86,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 7,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "AuthToken.cs",
-              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\AuthToken.cs",
-              "RelativeDocumentMoniker": "Models\\AuthToken.cs",
-              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\AuthToken.cs",
-              "RelativeToolTip": "Models\\AuthToken.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-20T22:02:16.98Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAwwI4AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-30T11:33:07.609Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "TaskBoardAPI.csproj",
-              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\TaskBoardAPI.csproj",
-              "RelativeDocumentMoniker": "TaskBoardAPI.csproj",
-              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\TaskBoardAPI.csproj",
-              "RelativeToolTip": "TaskBoardAPI.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-01-30T11:33:07.618Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 17,
@@ -146,8 +110,7 @@
               "RelativeToolTip": "Controllers\\TasksController.cs",
               "ViewState": "AQIAANsAAAAAAAAAAAAwwL8AAABuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-05T18:16:19.218Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-05T18:16:19.218Z"
             },
             {
               "$type": "Document",
@@ -221,6 +184,42 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-24T23:18:42.757Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "TaskBoardAPI.csproj",
+              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\TaskBoardAPI.csproj",
+              "RelativeDocumentMoniker": "TaskBoardAPI.csproj",
+              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\TaskBoardAPI.csproj",
+              "RelativeToolTip": "TaskBoardAPI.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-01-30T11:33:07.618Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAwwI4AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-30T11:33:07.609Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AuthToken.cs",
+              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\AuthToken.cs",
+              "RelativeDocumentMoniker": "Models\\AuthToken.cs",
+              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardAPI\\Models\\AuthToken.cs",
+              "RelativeToolTip": "Models\\AuthToken.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-20T22:02:16.98Z"
             },
             {
               "$type": "Document",

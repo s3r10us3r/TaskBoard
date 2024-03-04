@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\taskdisplay.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\taskdisplay.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\boardcomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\boardcomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\taskdisplay.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\taskdisplay.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\taskcreator.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\taskcreator.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\taskeditor.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\taskeditor.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\editcolumn.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\editcolumn.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\taskcreator.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -23,12 +27,16 @@
       "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\columncomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\taskcomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\taskcomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\taskdisplay.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\taskdisplay.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\boardcomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\boardcomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\taskcreator.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\taskcreator.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\taskcomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|solutionrelative:src\\boardview\\taskcomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{313FB53C-A351-4A09-82E5-405C86270360}|taskboardfrontend.esproj|c:\\users\\jedyn\\onedrive\\pulpit\\taskboard\\taskboardfrontend\\src\\boardview\\addcolumn.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -118,17 +126,17 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ColumnComponent.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\ColumnComponent.jsx",
               "RelativeDocumentMoniker": "src\\BoardView\\ColumnComponent.jsx",
               "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\ColumnComponent.jsx",
               "RelativeToolTip": "src\\BoardView\\ColumnComponent.jsx",
-              "ViewState": "AQIAADYAAAAAAAAAAAAYwAYAAABeAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2024-02-24T07:28:51.662Z",
               "IsPinned": true,
@@ -136,7 +144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "TaskCreator.css",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\TaskCreator.css",
               "RelativeDocumentMoniker": "src\\BoardView\\TaskCreator.css",
@@ -145,8 +153,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-03-02T10:37:50.296Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -164,7 +171,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "TaskDisplay.css",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\TaskDisplay.css",
               "RelativeDocumentMoniker": "src\\BoardView\\TaskDisplay.css",
@@ -179,32 +186,58 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "EditColumn.jsx",
+              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\EditColumn.jsx",
+              "RelativeDocumentMoniker": "src\\BoardView\\EditColumn.jsx",
+              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\EditColumn.jsx",
+              "RelativeToolTip": "src\\BoardView\\EditColumn.jsx",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-04T20:12:09.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TaskEditor.jsx",
+              "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\TaskEditor.jsx",
+              "RelativeDocumentMoniker": "src\\BoardView\\TaskEditor.jsx",
+              "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\TaskEditor.jsx",
+              "RelativeToolTip": "src\\BoardView\\TaskEditor.jsx",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-04T19:44:09.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "TaskCreator.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\TaskCreator.jsx",
               "RelativeDocumentMoniker": "src\\BoardView\\TaskCreator.jsx",
               "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\TaskCreator.jsx",
               "RelativeToolTip": "src\\BoardView\\TaskCreator.jsx",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAADoAAAAAAAAAAAAQwF0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2024-03-03T21:03:21.57Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "BoardComponent.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\BoardComponent.jsx",
               "RelativeDocumentMoniker": "src\\BoardView\\BoardComponent.jsx",
               "ToolTip": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\BoardComponent.jsx",
               "RelativeToolTip": "src\\BoardView\\BoardComponent.jsx",
-              "ViewState": "AQIAADIAAAAAAAAAAAAgwGkAAACOAAAA",
+              "ViewState": "AQIAAF8AAAAAAAAAAAAgwGkAAACOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2024-03-03T20:23:00.571Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "TaskComponent.css",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\TaskComponent.css",
               "RelativeDocumentMoniker": "src\\BoardView\\TaskComponent.css",
@@ -212,12 +245,11 @@
               "RelativeToolTip": "src\\BoardView\\TaskComponent.css",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-03-03T17:14:13.302Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-03T17:14:13.302Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "TaskComponent.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\TaskComponent.jsx",
               "RelativeDocumentMoniker": "src\\BoardView\\TaskComponent.jsx",
@@ -225,12 +257,11 @@
               "RelativeToolTip": "src\\BoardView\\TaskComponent.jsx",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2024-03-01T09:13:17.826Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-01T09:13:17.826Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "ColorPicker.css",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\Components\\ColorPicker.css",
               "RelativeDocumentMoniker": "src\\Components\\ColorPicker.css",
@@ -242,7 +273,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "ColorPicker.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\Components\\ColorPicker.jsx",
               "RelativeDocumentMoniker": "src\\Components\\ColorPicker.jsx",
@@ -250,12 +281,11 @@
               "RelativeToolTip": "src\\Components\\ColorPicker.jsx",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2024-02-19T11:34:34.902Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-19T11:34:34.902Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "ColumnComponent.css",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\ColumnComponent.css",
               "RelativeDocumentMoniker": "src\\BoardView\\ColumnComponent.css",
@@ -267,7 +297,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "AddColumn.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\AddColumn.jsx",
               "RelativeDocumentMoniker": "src\\BoardView\\AddColumn.jsx",
@@ -275,12 +305,11 @@
               "RelativeToolTip": "src\\BoardView\\AddColumn.jsx",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAE8AAABIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2024-02-24T16:04:07.46Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-24T16:04:07.46Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "AddBoard.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\AddBoard.jsx",
               "RelativeDocumentMoniker": "src\\BoardView\\AddBoard.jsx",
@@ -288,12 +317,11 @@
               "RelativeToolTip": "src\\BoardView\\AddBoard.jsx",
               "ViewState": "AQIAACcAAAAAAAAAAAAAAEAAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2024-02-24T16:07:52.928Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-24T16:07:52.928Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "BoardView.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\BoardView.jsx",
               "RelativeDocumentMoniker": "src\\BoardView\\BoardView.jsx",
@@ -301,12 +329,11 @@
               "RelativeToolTip": "src\\BoardView\\BoardView.jsx",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2024-03-03T19:59:30.1Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-03T19:59:30.1Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "AddBoard.css",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\AddBoard.css",
               "RelativeDocumentMoniker": "src\\BoardView\\AddBoard.css",
@@ -318,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "App.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\App.jsx",
               "RelativeDocumentMoniker": "src\\App.jsx",
@@ -330,7 +357,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "BoardView.css",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\BoardView\\BoardView.css",
               "RelativeDocumentMoniker": "src\\BoardView\\BoardView.css",
@@ -338,12 +365,11 @@
               "RelativeToolTip": "src\\BoardView\\BoardView.css",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-02-14T10:39:50.7Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-14T10:39:50.7Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "LoginPage.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\LoginPage\\LoginPage.jsx",
               "RelativeDocumentMoniker": "src\\LoginPage\\LoginPage.jsx",
@@ -355,7 +381,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\index.html",
               "RelativeDocumentMoniker": "index.html",
@@ -367,7 +393,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "index.css",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\index.css",
               "RelativeDocumentMoniker": "src\\index.css",
@@ -379,7 +405,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "App.css",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\App.css",
               "RelativeDocumentMoniker": "src\\App.css",
@@ -391,7 +417,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "Redirector.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\Redirector.jsx",
               "RelativeDocumentMoniker": "src\\Redirector.jsx",
@@ -403,7 +429,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "constants.js",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\constants.js",
               "RelativeDocumentMoniker": "src\\constants.js",
@@ -415,7 +441,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "main.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\main.jsx",
               "RelativeDocumentMoniker": "src\\main.jsx",
@@ -427,7 +453,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "Register.jsx",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\src\\RegisterPage\\Register.jsx",
               "RelativeDocumentMoniker": "src\\RegisterPage\\Register.jsx",
@@ -439,7 +465,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 28,
               "Title": ".eslintrc.cjs",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\.eslintrc.cjs",
               "RelativeDocumentMoniker": ".eslintrc.cjs",
@@ -451,7 +477,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "vite.config.js",
               "DocumentMoniker": "C:\\Users\\jedyn\\OneDrive\\Pulpit\\TaskBoard\\TaskBoardFrontend\\vite.config.js",
               "RelativeDocumentMoniker": "vite.config.js",
