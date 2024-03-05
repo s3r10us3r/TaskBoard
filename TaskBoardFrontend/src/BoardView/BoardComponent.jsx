@@ -9,6 +9,7 @@ import AddColumn from "./AddColumn";
 import * as React from "react";
 import TaskCreator from "./TaskCreator";
 import TaskDisplay from "./TaskDisplay";
+import TaskEditor from "./TaskEditor";
 function BoardComponent({ boardID }) {
     const token = getCookie('token');
     const [board, setBoard] = useState(null);
@@ -103,7 +104,8 @@ function BoardComponent({ boardID }) {
         <div className="mainBoardContainer" style={{ backgroundColor: board.backgroundColor }}>
             {isTaskCreatorOpen && <TaskCreator columnID={taskCreatorColumnID} taskOrder={taskCreatorTaskOrder} setTasks={setTasksFunc} onClose={() => { openTaskCreator(false); setTaskCreatorColumnID(-1); setTaskCreatorTaskOrder(-1); setSetTasksFunc(null); }} />} 
 
-            {isTaskDisplayOpen && !isTaskEditorOpen && <TaskDisplay task={displayedTask} onClose={() => { setTaskSetter(null); setDisplayedTask(null); }} /> }
+            {isTaskDisplayOpen && <TaskDisplay task={displayedTask} onClose={() => {openTaskDisplay(false); setTaskSetter(null); setDisplayedTask(null); }} edit={() => { setIsTaskEditorOpen(true); console.log('edit button was clicked') } } />}
+            {isTaskEditorOpen && <TaskEditor task={displayedTask} onClose={() => {openTaskDisplay(false) ;setIsTaskEditorOpen(false); setTaskSetter(null); setDisplayedTask(null) }} setTask={taskSetter} />}
 
             {   
                 columns.map((column, index) => {
@@ -143,12 +145,7 @@ function BoardComponent({ boardID }) {
     function editTask(task, setTask) {
         console.log("Edit task used: ", task, setTask);
         setDisplayedTask(task);
-        setTaskSetter( () =>  setTask );
-    }
-
-    function closeEditTask() {
-        setDisplayedTask(null);
-        setTaskSetter(null);
+        setTaskSetter(() => setTask );
     }
 
     async function handleColumnDrop(columnID, position) {

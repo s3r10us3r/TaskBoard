@@ -1,3 +1,0 @@
-2024-03-02 22:06:59.729 [INF] ColumnID 56 had its properties changed to: name: Zrobione color: #0000af order: 1 from: Zrobione color: #0000af order: 2
-2024-03-02 22:06:59.730 [INF] ColumnID 55 had its properties changed to: name: W trakcie color: #af0000 order: 2 from: W trakcie color: #af0000 order: 0
-2024-03-02 22:06:59.729 [INF] ColumnID 54 had its properties changed to: name: Do zrobienia color: #ffa500 order: 0 from: Do zrobienia color: #ffa500 order: 1

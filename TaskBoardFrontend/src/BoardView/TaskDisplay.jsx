@@ -4,12 +4,12 @@ import { useState } from "react";
 
 function TaskDisplay({ task, onClose, edit }) {
     const [thisTask, setTask] = useState({...task}) 
-
+    console.log("In task display somehow");
     return (
         <div className="taskDisplay">
             <p className="title" style={{borderBottomColor: thisTask.taskColor} }>{thisTask.taskName}</p>
             <pre className="description">{thisTask.taskDescription}</pre>
-            <button className="taskDisplayButton taskDisplayEdit" onClick={edit} >Edit</button>
+            <button className="taskDisplayButton taskDisplayEdit" onClick={() => edit()} >Edit</button>
             <button className="taskDisplayButton taskDisplayClose" onClick={onClose}>Close</button>
         </div>
     )
