@@ -1,17 +1,19 @@
 import PropTypes from 'prop-types';
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState} from 'react';
 import './ColumnComponent.css';
 import EditColumn from './EditColumn';
 import TaskComponent from './TaskComponent';
 
-const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, createTask, editTask}, ref) => {
+const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, createTask, editTask, notifyTaskDrag, isTaskDragged, notifyTaskRelease}, ref) => {
     const columnObj = content.boardColumn;
     const [tasks, setTasks] = useState(content.tasks);
 
     const [isDragged, setDragged] = useState(false);
+    const [upZIndex, setUpZIndex] = useState(false);
     const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const [isEdited, setIsEdited] = useState(false);
+
 
     useEffect(() => {
         if (isDragged) {
@@ -27,10 +29,6 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, create
             document.removeEventListener('mouseup', handleMouseUp);
         };
     }, [isDragged])
-
-    useEffect(() => {
-        console.log("tasks state changed: ", tasks);
-    }, [tasks])
 
     function handleMouseMove(e) {
         if (isDragged) {
@@ -68,7 +66,7 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, create
     }
 
     return (
-        <div ref={ref} className="columnComponent" style={{ transform: `translate(${offset.x}px, ${offset.y}px)`, zIndex: isDragged ? 100 : 'auto' }}>
+        <div ref={ref}  className="columnComponent" style={{ transform: `translate(${offset.x}px, ${offset.y}px)`, zIndex: (isDragged || upZIndex) ? 100 : 10 }}>
                 <div className="columnHeader">
                     <div className="colorBar" style={{ backgroundColor: columnObj.columnColor }} onMouseDown={handleMouseDown} />
                     <p onClick={() => { setIsEdited(true) }} className="editColumnButton">...</p>
@@ -77,7 +75,13 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, create
             
                 {
                     tasks.map((task, index) => {
-                        return <TaskComponent key={index} task={task} edit={editTask} />
+                        return <TaskComponent
+                            key={index} task={task}
+                            edit={editTask}
+                            notifyDrag={() => { setUpZIndex(true); notifyTaskDrag() }}
+                            notifyRelease={() => { setUpZIndex(false); notifyTaskRelease(); }}
+                            isTaskDragged={isTaskDragged}
+                        />
                     })
                 }
            
@@ -101,7 +105,10 @@ ColumnComponent.propTypes = {
     notifyDrag: PropTypes.func.isRequired,
     notifyRelease: PropTypes.func.isRequired,
     createTask: PropTypes.func.isRequired,
-    editTask: PropTypes.func.isRequired
+    editTask: PropTypes.func.isRequired,
+    notifyTaskDrag: PropTypes.func.isRequired,
+    isTaskDragged: PropTypes.bool.isRequired,
+    notifyTaskRelease: PropTypes.func.isRequired
 }
 
 ColumnComponent.displayName = 'ColumnComponent';

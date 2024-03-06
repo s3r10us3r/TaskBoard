@@ -32,6 +32,10 @@ function BoardComponent({ boardID }) {
 
     const [isTaskEditorOpen, setIsTaskEditorOpen] = useState(false);
 
+
+    const [isTaskDragged, setIsTaskDragged] = useState(false);
+
+
     useEffect(() => {
         getBoardWithComponents(boardID);
     },[boardID])
@@ -104,7 +108,7 @@ function BoardComponent({ boardID }) {
         <div className="mainBoardContainer" style={{ backgroundColor: board.backgroundColor }}>
             {isTaskCreatorOpen && <TaskCreator columnID={taskCreatorColumnID} taskOrder={taskCreatorTaskOrder} setTasks={setTasksFunc} onClose={() => { openTaskCreator(false); setTaskCreatorColumnID(-1); setTaskCreatorTaskOrder(-1); setSetTasksFunc(null); }} />} 
 
-            {isTaskDisplayOpen && <TaskDisplay task={displayedTask} onClose={() => {openTaskDisplay(false); setTaskSetter(null); setDisplayedTask(null); }} edit={() => { setIsTaskEditorOpen(true); console.log('edit button was clicked') } } />}
+            {isTaskDisplayOpen && <TaskDisplay task={displayedTask} onClose={() => {openTaskDisplay(false); setTaskSetter(null); setDisplayedTask(null); }} edit={() => { setIsTaskEditorOpen(true); } } />}
             {isTaskEditorOpen && <TaskEditor task={displayedTask} onClose={() => {openTaskDisplay(false) ;setIsTaskEditorOpen(false); setTaskSetter(null); setDisplayedTask(null) }} setTask={taskSetter} />}
 
             {   
@@ -117,6 +121,9 @@ function BoardComponent({ boardID }) {
                         notifyRelease={handleColumnDrop}
                         createTask={createTask}
                         editTask={editTask}
+                        isTaskDragged={isTaskDragged}
+                        notifyTaskDrag={() => { setIsTaskDragged(true) }}
+                        notifyTaskRelease={() => { setIsTaskDragged(false) }}
                     />
                 })
             }

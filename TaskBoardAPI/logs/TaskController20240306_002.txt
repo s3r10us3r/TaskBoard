@@ -1,0 +1,2 @@
+2024-03-06 17:40:08.907 [INF] ColumnID 62 had its properties changed to: name: to do. color: #fbbf77 order: 0 from: to do. color: #fbbf77 order: 1
+2024-03-06 17:40:08.906 [INF] ColumnID 61 had its properties changed to: name: I need to add a column color: #fffdaf order: 1 from: I need to add a column color: #fffdaf order: 0
