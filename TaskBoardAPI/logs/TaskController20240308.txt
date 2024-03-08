@@ -1,0 +1,4 @@
+2024-03-08 13:14:01.471 [INF] ColumnID 63 had its properties changed to: name: finished color: #af0000 order: 1 from: finished color: #af0000 order: 2
+2024-03-08 13:14:01.471 [INF] ColumnID 62 had its properties changed to: name: to do. color: #fbbf77 order: 2 from: to do. color: #fbbf77 order: 1
+2024-03-08 13:24:27.227 [INF] Task 30 added to column 62
+2024-03-08 13:26:27.645 [INF] Task 31 added to column 62

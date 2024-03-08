@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useRef, useState, useEffect } from 'react';
 import './TaskComponent.css';
 
-function TaskComponent({ task, edit, notifyDrag, notifyRelease, isTaskDragged, addTaskPoints }) {
+function TaskComponent({ task, edit, notifyDrag, notifyRelease, isTaskDragged, addTaskPoint, setTasks, tasks }) {
     const [thisTask, setTask] = useState(task)
     const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
     const [isDragged, setIsDragged] = useState(false);
@@ -12,14 +12,49 @@ function TaskComponent({ task, edit, notifyDrag, notifyRelease, isTaskDragged, a
         setTask(newTask);
     };
 
+    useEffect(() => {
+        setTask(task);
+    }, [task])
+
     const thisRef = useRef();
 
     useEffect(() => {
-        if (isTaskDragged && thisRef.current) {
+        if (!isTaskDragged && thisRef.current) {
             const thisBoundingBox = thisRef.current.getBoundingClientRect();
-            console.log(thisBoundingBox);
+
+            if (isDragged) {
+                const taskCenter = {
+                    x: (thisBoundingBox.left + thisBoundingBox.right) / 2,
+                    y: (thisBoundingBox.top + thisBoundingBox.left) / 2,
+                    columnID: thisTask.columnID,
+                    taskOrder: -1 //if task order is -1 we just don't make the edit
+                }
+                addTaskPoint(taskCenter);
+                return;
+            }
+            
+            const taskBottom = {
+                x: (thisBoundingBox.left + thisBoundingBox.right) / 2,
+                y: thisBoundingBox.bottom,
+                columnID: thisTask.columnID,
+                taskOrder: thisTask.taskOrder + 1
+            }
+
+            addTaskPoint(taskBottom);
+
+            if (thisTask.taskOrder === 0) {
+                const taskTop = {
+                    x: (thisBoundingBox.left + thisBoundingBox.right) / 2,
+                    y: thisBoundingBox.top,
+                    columnID: thisTask.columnID,
+                    taskOrder: thisTask.taskOrder,
+                    setTasks: setTasks
+                }
+
+                addTaskPoint(taskTop);
+            }
         }
-    }, [isTaskDragged])
+    }, [isTaskDragged, isDragged])
 
     useEffect(() => {
         if (isDragged) {
@@ -57,10 +92,16 @@ function TaskComponent({ task, edit, notifyDrag, notifyRelease, isTaskDragged, a
         }
     }
 
-    function handleMouseUp() {
+    function handleMouseUp(e) {
         if (isDragged) {
             setIsDragged(false);
-            notifyRelease();
+            const currentPos = {
+                x: e.clientX,
+                y: e.clientY
+            }
+
+            console.log('tasks', tasks);
+            notifyRelease(thisTask, currentPos, setTasks, tasks);
             setOffset({ x: 0, y: 0 });
         }
     }
@@ -88,7 +129,10 @@ TaskComponent.propTypes = {
     edit: PropTypes.func.isRequired,
     notifyDrag: PropTypes.func.isRequired,
     notifyRelease: PropTypes.func.isRequired,
-    isTaskDragged: PropTypes.bool.isRequired
+    isTaskDragged: PropTypes.bool.isRequired,
+    addTaskPoint: PropTypes.func.isRequired,
+    setTasks: PropTypes.func.isRequired,
+    tasks: PropTypes.array.isRequired
 }
 
 TaskComponent.displayName = "TaskComponent";

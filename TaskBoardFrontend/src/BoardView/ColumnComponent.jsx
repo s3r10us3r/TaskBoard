@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
-import { forwardRef, useEffect, useState} from 'react';
+import { forwardRef, useEffect, useState, useRef} from 'react';
 import './ColumnComponent.css';
 import EditColumn from './EditColumn';
 import TaskComponent from './TaskComponent';
 
-const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, createTask, editTask, notifyTaskDrag, isTaskDragged, notifyTaskRelease}, ref) => {
+const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, createTask, editTask, notifyTaskDrag, isTaskDragged, notifyTaskRelease, addTaskPoint}, ref) => {
     const columnObj = content.boardColumn;
+    content.tasks.sort((a, b) => a.taskOrder - b.taskOrder);
+
     const [tasks, setTasks] = useState(content.tasks);
 
     const [isDragged, setDragged] = useState(false);
@@ -14,6 +16,9 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, create
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const [isEdited, setIsEdited] = useState(false);
 
+    console.log("RERENDERED COLUMN", tasks);
+
+    const buttonRef = useRef();
 
     useEffect(() => {
         if (isDragged) {
@@ -29,6 +34,23 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, create
             document.removeEventListener('mouseup', handleMouseUp);
         };
     }, [isDragged])
+
+
+    useEffect(() => {
+        if (!isTaskDragged && buttonRef.current && tasks.length === 0) {
+            const boundingBox = buttonRef.current.getBoundingClientRect();
+
+            const point = {
+                x: (boundingBox.left + boundingBox.right) / 2,
+                y: (boundingBox.top + boundingBox.bottom) / 2,
+                columnID: columnObj.columnID,
+                taskOrder: 0,
+                setTasks: setTasks
+            }
+
+            addTaskPoint(point);
+        }
+    }, [isTaskDragged])
 
     function handleMouseMove(e) {
         if (isDragged) {
@@ -79,14 +101,17 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, create
                             key={index} task={task}
                             edit={editTask}
                             notifyDrag={() => { setUpZIndex(true); notifyTaskDrag() }}
-                            notifyRelease={() => { setUpZIndex(false); notifyTaskRelease(); }}
+                            notifyRelease={(droppedTask, dropPoint, setTasks, tasks) => { setUpZIndex(false); notifyTaskRelease(droppedTask, dropPoint, setTasks, tasks); }}
                             isTaskDragged={isTaskDragged}
+                            addTaskPoint={addTaskPoint}
+                            setTasks={(newTasks) => {console.log("new tasks inside function", newTasks); setTasks(newTasks); } }
+                            tasks={tasks}
                         />
                     })
                 }
            
 
-            <button className="addTaskButton" onClick={() => { createTask(columnObj.columnID, setTasks, tasks.length)}}>+</button>
+            <button ref={buttonRef} className="addTaskButton" onClick={() => { createTask(columnObj.columnID, setTasks, tasks.length)}}>+</button>
         </div>
     )
 })
@@ -108,7 +133,8 @@ ColumnComponent.propTypes = {
     editTask: PropTypes.func.isRequired,
     notifyTaskDrag: PropTypes.func.isRequired,
     isTaskDragged: PropTypes.bool.isRequired,
-    notifyTaskRelease: PropTypes.func.isRequired
+    notifyTaskRelease: PropTypes.func.isRequired,
+    addTaskPoint: PropTypes.func.isRequired
 }
 
 ColumnComponent.displayName = 'ColumnComponent';

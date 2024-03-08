@@ -34,7 +34,7 @@ function BoardComponent({ boardID }) {
 
 
     const [isTaskDragged, setIsTaskDragged] = useState(false);
-
+    const [taskPoints, setTaskPoints] = useState([]);
 
     useEffect(() => {
         getBoardWithComponents(boardID);
@@ -109,21 +109,22 @@ function BoardComponent({ boardID }) {
             {isTaskCreatorOpen && <TaskCreator columnID={taskCreatorColumnID} taskOrder={taskCreatorTaskOrder} setTasks={setTasksFunc} onClose={() => { openTaskCreator(false); setTaskCreatorColumnID(-1); setTaskCreatorTaskOrder(-1); setSetTasksFunc(null); }} />} 
 
             {isTaskDisplayOpen && <TaskDisplay task={displayedTask} onClose={() => {openTaskDisplay(false); setTaskSetter(null); setDisplayedTask(null); }} edit={() => { setIsTaskEditorOpen(true); } } />}
-            {isTaskEditorOpen && <TaskEditor task={displayedTask} onClose={() => {openTaskDisplay(false) ;setIsTaskEditorOpen(false); setTaskSetter(null); setDisplayedTask(null) }} setTask={taskSetter} />}
+            {isTaskEditorOpen && <TaskEditor task={displayedTask} onClose={() => {openTaskDisplay(false); setIsTaskEditorOpen(false); setTaskSetter(null); setDisplayedTask(null) }} setTask={taskSetter} />}
 
             {   
                 columns.map((column, index) => {
                     return <ColumnComponent
                         key={column.boardColumn.columnID}
                         ref={el => columnRefs.current[index] = el}
-                        content={column}
+                        content={column }
                         notifyDrag={() => { setBinOpen(true); calculateColumnCenters(); }}
                         notifyRelease={handleColumnDrop}
                         createTask={createTask}
                         editTask={editTask}
                         isTaskDragged={isTaskDragged}
                         notifyTaskDrag={() => { setIsTaskDragged(true) }}
-                        notifyTaskRelease={() => { setIsTaskDragged(false) }}
+                        notifyTaskRelease={ handleTaskRelease }
+                        addTaskPoint={addTaskPoint}
                     />
                 })
             }
@@ -153,6 +154,76 @@ function BoardComponent({ boardID }) {
         console.log("Edit task used: ", task, setTask);
         setDisplayedTask(task);
         setTaskSetter(() => setTask );
+    }
+
+    function addTaskPoint(taskPoint) {
+        setTaskPoints((currentPoints => [...currentPoints, taskPoint]));
+    }
+
+    async function handleTaskRelease(droppedTask, dropPoint, setOriginalTasks, originalTasks) {
+        console.log("Task points: ", taskPoints);
+        console.log("Drop point: ", dropPoint);
+
+
+
+        setIsTaskDragged(false);
+        let minimalDist = 100_000;
+        let closestTaskPoint = null;
+
+        taskPoints.forEach(((taskPoint) => {
+            const dist = Math.sqrt((dropPoint.x - taskPoint.x) ** 2 + (dropPoint.y - taskPoint.y) ** 2);
+            if (dist < minimalDist) {
+                minimalDist = dist;
+                closestTaskPoint = taskPoint;
+            }
+        }))
+
+        //ADD FETCH REEQUESTS
+
+        if (closestTaskPoint.columnID === droppedTask.columnID && closestTaskPoint.taskOrder === droppedTask.taskOrder) {
+            setTaskPoints([]);
+            return;
+        }
+        else if (closestTaskPoint.columnID === droppedTask.columnID) {
+            const newTasks = [...originalTasks];
+            newTasks.splice(droppedTask.taskOrder, 1);
+            newTasks.splice(closestTaskPoint.taskOrder, 0, droppedTask);
+
+            updateTaskOrder(newTasks, droppedTask.columnID);
+            setOriginalTasks(newTasks.slice());
+        }
+        else {
+            const oldColumnID = droppedTask.columnID;
+
+            droppedTask.columnID = closestTaskPoint.columnID;
+            droppedTask.taskOrder = closestTaskPoint.taskOrder;
+
+
+            let oldColumn = columns.find(column => column.boardColumn.columnID === oldColumnID);
+            oldColumn.tasks = oldColumn.tasks.filter(task => task.taskID != droppedTask.taskID);
+
+            let newColumn = columns.find(column => column.boardColumn.columnID === droppedTask.columnID);
+            newColumn.tasks.splice(droppedTask.taskOrder, 0, droppedTask);
+
+            //ADD FETCH REQUESTS
+            oldColumn.tasks.map((task, index) => {
+                if (task.taskOrder != index) {
+                    task.taskOrder = index;
+                }
+            });
+
+            newColumn.tasks.map((task, index) => {
+                if (task.taskOrder != index) {
+                    task.taskOrder = index;
+                }
+            });
+
+            columns[oldColumn.columnOrder] = oldColumn;
+            columns[newColumn.columnOrder] = newColumn;
+
+            setColumns([...columns]);
+        }
+        setTaskPoints([]);
     }
 
     async function handleColumnDrop(columnID, position) {
@@ -259,5 +330,41 @@ function BoardComponent({ boardID }) {
 BoardComponent.propTypes = {
     boardID: PropTypes.number.isRequired
 };
+
+
+//ADD FETCH FUNCTION
+async function updateTaskOrder(tasks, columnID) {
+    await tasks.forEach(async (task, index) => {
+        let hasChanged = false;
+
+        if (task.taskOrder !== index) {
+            task.taskOrder = index;
+            hasChanged = true;
+        }
+        if (task.columnID !== columnID) {
+            task.columnID = columnID;
+            hasChanged = true;
+        }
+
+        if (hasChanged) {
+            const request = {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: getCookie('token')
+                },
+                body: JSON.stringify(task)
+            };
+            try {
+                const response = await fetch(API_PATH + "/Tasks/editTask", request);
+                if (!response.ok) {
+                    console.error(response.json());
+                }
+            } catch (exception) {
+                console.error(exception);
+            }
+        }
+    })
+}
 
 export default BoardComponent;
