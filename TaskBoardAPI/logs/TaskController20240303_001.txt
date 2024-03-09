@@ -1,2 +1,0 @@
-2024-03-03 18:20:45.102 [INF] Task 7 added to column 53
-2024-03-03 18:28:44.809 [INF] Task 8 added to column 52

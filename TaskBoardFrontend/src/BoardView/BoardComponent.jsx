@@ -193,35 +193,15 @@ function BoardComponent({ boardID }) {
             setOriginalTasks(newTasks.slice());
         }
         else {
-            const oldColumnID = droppedTask.columnID;
+            const newOriginalTasks = [...originalTasks];
+            newOriginalTasks.splice(droppedTask.taskOrder, 1);
+            updateTaskOrder(newOriginalTasks, droppedTask.columnID);
+            setOriginalTasks(newOriginalTasks);
 
-            droppedTask.columnID = closestTaskPoint.columnID;
-            droppedTask.taskOrder = closestTaskPoint.taskOrder;
-
-
-            let oldColumn = columns.find(column => column.boardColumn.columnID === oldColumnID);
-            oldColumn.tasks = oldColumn.tasks.filter(task => task.taskID != droppedTask.taskID);
-
-            let newColumn = columns.find(column => column.boardColumn.columnID === droppedTask.columnID);
-            newColumn.tasks.splice(droppedTask.taskOrder, 0, droppedTask);
-
-            //ADD FETCH REQUESTS
-            oldColumn.tasks.map((task, index) => {
-                if (task.taskOrder != index) {
-                    task.taskOrder = index;
-                }
-            });
-
-            newColumn.tasks.map((task, index) => {
-                if (task.taskOrder != index) {
-                    task.taskOrder = index;
-                }
-            });
-
-            columns[oldColumn.columnOrder] = oldColumn;
-            columns[newColumn.columnOrder] = newColumn;
-
-            setColumns([...columns]);
+            const newTasks = [...closestTaskPoint.tasks];
+            newTasks.splice(closestTaskPoint.taskOrder, 0, droppedTask);
+            updateTaskOrder(newTasks, closestTaskPoint.columnID);
+            closestTaskPoint.setTasks(newTasks);
         }
         setTaskPoints([]);
     }

@@ -16,7 +16,6 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, create
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const [isEdited, setIsEdited] = useState(false);
 
-    console.log("RERENDERED COLUMN", tasks);
 
     const buttonRef = useRef();
 
@@ -45,7 +44,8 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, create
                 y: (boundingBox.top + boundingBox.bottom) / 2,
                 columnID: columnObj.columnID,
                 taskOrder: 0,
-                setTasks: setTasks
+                setTasks: setTasks,
+                tasks: tasks
             }
 
             addTaskPoint(point);

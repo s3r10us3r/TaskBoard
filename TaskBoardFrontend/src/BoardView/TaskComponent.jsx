@@ -21,23 +21,14 @@ function TaskComponent({ task, edit, notifyDrag, notifyRelease, isTaskDragged, a
     useEffect(() => {
         if (!isTaskDragged && thisRef.current) {
             const thisBoundingBox = thisRef.current.getBoundingClientRect();
-
-            if (isDragged) {
-                const taskCenter = {
-                    x: (thisBoundingBox.left + thisBoundingBox.right) / 2,
-                    y: (thisBoundingBox.top + thisBoundingBox.left) / 2,
-                    columnID: thisTask.columnID,
-                    taskOrder: -1 //if task order is -1 we just don't make the edit
-                }
-                addTaskPoint(taskCenter);
-                return;
-            }
             
             const taskBottom = {
                 x: (thisBoundingBox.left + thisBoundingBox.right) / 2,
                 y: thisBoundingBox.bottom,
                 columnID: thisTask.columnID,
-                taskOrder: thisTask.taskOrder + 1
+                taskOrder: thisTask.taskOrder + 1,
+                setTasks: setTasks,
+                tasks: tasks
             }
 
             addTaskPoint(taskBottom);
@@ -48,7 +39,8 @@ function TaskComponent({ task, edit, notifyDrag, notifyRelease, isTaskDragged, a
                     y: thisBoundingBox.top,
                     columnID: thisTask.columnID,
                     taskOrder: thisTask.taskOrder,
-                    setTasks: setTasks
+                    setTasks: setTasks,
+                    tasks: tasks
                 }
 
                 addTaskPoint(taskTop);
