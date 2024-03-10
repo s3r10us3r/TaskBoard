@@ -29,12 +29,14 @@ function BoardComponent({ boardID }) {
     const [isTaskDisplayOpen, openTaskDisplay] = useState(false);
     const [displayedTask, setDisplayedTask] = useState(null);
     const [taskSetter, setTaskSetter] = useState(null);
+    const [tasksSetter, setTasksSetter] = useState(null);
+    const [tasksForTaskEditor, setTasksForTaskEditor] = useState(null);
 
     const [isTaskEditorOpen, setIsTaskEditorOpen] = useState(false);
 
 
     const [isTaskDragged, setIsTaskDragged] = useState(false);
-    const [taskPoints, setTaskPoints] = useState([]);
+    let taskPoints = [];
 
     useEffect(() => {
         getBoardWithComponents(boardID);
@@ -108,7 +110,7 @@ function BoardComponent({ boardID }) {
         <div className="mainBoardContainer" style={{ backgroundColor: board.backgroundColor }}>
             {isTaskCreatorOpen && <TaskCreator columnID={taskCreatorColumnID} taskOrder={taskCreatorTaskOrder} setTasks={setTasksFunc} onClose={() => { openTaskCreator(false); setTaskCreatorColumnID(-1); setTaskCreatorTaskOrder(-1); setSetTasksFunc(null); }} />} 
 
-            {isTaskDisplayOpen && <TaskDisplay task={displayedTask} onClose={() => {openTaskDisplay(false); setTaskSetter(null); setDisplayedTask(null); }} edit={() => { setIsTaskEditorOpen(true); } } />}
+            {isTaskDisplayOpen && <TaskDisplay task={displayedTask} tasks={tasksForTaskEditor} setTasks={tasksSetter} onClose={() => {openTaskDisplay(false); setTaskSetter(null); setDisplayedTask(null); }} edit={() => { setIsTaskEditorOpen(true); } } />}
             {isTaskEditorOpen && <TaskEditor task={displayedTask} onClose={() => {openTaskDisplay(false); setIsTaskEditorOpen(false); setTaskSetter(null); setDisplayedTask(null) }} setTask={taskSetter} />}
 
             {   
@@ -122,7 +124,7 @@ function BoardComponent({ boardID }) {
                         createTask={createTask}
                         editTask={editTask}
                         isTaskDragged={isTaskDragged}
-                        notifyTaskDrag={() => { setIsTaskDragged(true) }}
+                        notifyTaskDrag={handleTaskDrag}
                         notifyTaskRelease={ handleTaskRelease }
                         addTaskPoint={addTaskPoint}
                     />
@@ -150,14 +152,24 @@ function BoardComponent({ boardID }) {
         openTaskCreator(true);
     }
 
-    function editTask(task, setTask) {
-        console.log("Edit task used: ", task, setTask);
+    function editTask(task, setTask, tasks, setTasks) {
         setDisplayedTask(task);
+        setTasksForTaskEditor(tasks)
+        setTasksSetter(()=>setTasks);
         setTaskSetter(() => setTask );
     }
 
-    function addTaskPoint(taskPoint) {
-        setTaskPoints((currentPoints => [...currentPoints, taskPoint]));
+    async function addTaskPoint(taskPoint) {
+        const newPoints = [...taskPoints, taskPoint];
+        taskPoints = newPoints;
+        console.log("Should be added", taskPoint, taskPoints);
+    }
+
+    async function handleTaskDrag() {
+        if (!isTaskDragged) {
+            taskPoints = [];
+            await setIsTaskDragged(true);
+        }
     }
 
     async function handleTaskRelease(droppedTask, dropPoint, setOriginalTasks, originalTasks) {
@@ -178,10 +190,9 @@ function BoardComponent({ boardID }) {
             }
         }))
 
-        //ADD FETCH REEQUESTS
+        console.log("CLOSEST TASK POINT", closestTaskPoint);
 
         if (closestTaskPoint.columnID === droppedTask.columnID && closestTaskPoint.taskOrder === droppedTask.taskOrder) {
-            setTaskPoints([]);
             return;
         }
         else if (closestTaskPoint.columnID === droppedTask.columnID) {
@@ -203,7 +214,6 @@ function BoardComponent({ boardID }) {
             updateTaskOrder(newTasks, closestTaskPoint.columnID);
             closestTaskPoint.setTasks(newTasks);
         }
-        setTaskPoints([]);
     }
 
     async function handleColumnDrop(columnID, position) {

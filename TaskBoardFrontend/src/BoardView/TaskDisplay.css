@@ -1,12 +1,12 @@
 .taskDisplay {
-    width: 900px;
+    width: 1000px;
     height: 500px;
     border: 2px solid snow;
     display: grid;
     justify-content: center;
     align-content: center;
     align-items: center;
-    grid-template-columns: 20px 660px 100px 100px 20px;
+    grid-template-columns: 20px 660px 100px 100px 100px 20px;
     grid-template-rows: 20px 75px 325px 100px;
     position: fixed;
     top: 50%;
@@ -20,22 +20,22 @@
 }
 
 .title {
-    width: 860px;
+    width: 960px;
     height: 50px;
     color: snow;
     font-size: 25px;
     border-radius: 5px;
-    grid-column: 2 / 4;
+    grid-column: 2 / 5;
     grid-row: 2;
     border-bottom: 2px solid;
 }
 
 .description {
-    width: 860px;
+    width: 960px;
     height: 325px;
     border: 0px;
     border-radius: 5px;
-    grid-column: 2 / 4;
+    grid-column: 2 / 5;
     grid-row: 3;
     font-size: 15px;
     text-align: left;
@@ -62,5 +62,12 @@
     background-color: lightcoral;
     border: 1px solid black;
     grid-column: 4;
+    grid-row: 4;
+}
+
+.taskDisplayDelete{
+    background-color: red;
+    border: 1px solid black;
+    grid-column: 5;
     grid-row: 4;
 }

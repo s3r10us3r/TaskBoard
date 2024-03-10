@@ -4,7 +4,7 @@ import './ColumnComponent.css';
 import EditColumn from './EditColumn';
 import TaskComponent from './TaskComponent';
 
-const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, createTask, editTask, notifyTaskDrag, isTaskDragged, notifyTaskRelease, addTaskPoint}, ref) => {
+const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, createTask, editTask, notifyTaskDrag, isTaskDragged, notifyTaskRelease, addTaskPoint}, refForward) => {
     const columnObj = content.boardColumn;
     content.tasks.sort((a, b) => a.taskOrder - b.taskOrder);
 
@@ -36,16 +36,17 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, create
 
 
     useEffect(() => {
-        if (!isTaskDragged && buttonRef.current && tasks.length === 0) {
+        if (buttonRef.current) {
             const boundingBox = buttonRef.current.getBoundingClientRect();
 
             const point = {
                 x: (boundingBox.left + boundingBox.right) / 2,
-                y: (boundingBox.top + boundingBox.bottom) / 2,
+                y: boundingBox.bottom,
                 columnID: columnObj.columnID,
-                taskOrder: 0,
+                taskOrder: tasks.length,
                 setTasks: setTasks,
-                tasks: tasks
+                tasks: tasks,
+                pointName: "column bottom"
             }
 
             addTaskPoint(point);
@@ -88,7 +89,7 @@ const ColumnComponent = forwardRef(({ content, notifyDrag, notifyRelease, create
     }
 
     return (
-        <div ref={ref}  className="columnComponent" style={{ transform: `translate(${offset.x}px, ${offset.y}px)`, zIndex: (isDragged || upZIndex) ? 100 : 10 }}>
+        <div ref={refForward}  className="columnComponent" style={{ transform: `translate(${offset.x}px, ${offset.y}px)`, zIndex: (isDragged || upZIndex) ? 100 : 10 }}>
                 <div className="columnHeader">
                     <div className="colorBar" style={{ backgroundColor: columnObj.columnColor }} onMouseDown={handleMouseDown} />
                     <p onClick={() => { setIsEdited(true) }} className="editColumnButton">...</p>

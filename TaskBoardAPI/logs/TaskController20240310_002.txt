@@ -1,0 +1,6 @@
+2024-03-10 14:08:06.224 [INF] ColumnID 64 had its properties changed to: name: new col color: #00af00 order: 3 from: new col color: #00af00 order: 2
+2024-03-10 14:08:06.257 [INF] ColumnID 62 had its properties changed to: name: to do. color: #fbbf77 order: 2 from: to do. color: #fbbf77 order: 3
+2024-03-10 15:01:46.342 [INF] Deleted task 29
+2024-03-10 15:02:46.240 [INF] Deleted task 23
+2024-03-10 15:03:29.624 [INF] Deleted task 27
+2024-03-10 15:05:05.414 [INF] Deleted task 24

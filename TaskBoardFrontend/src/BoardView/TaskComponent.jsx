@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useRef, useState, useEffect } from 'react';
 import './TaskComponent.css';
+import { getCookie } from '../Services/CookieService';
+import { API_PATH } from '../constants';
 
 function TaskComponent({ task, edit, notifyDrag, notifyRelease, isTaskDragged, addTaskPoint, setTasks, tasks }) {
     const [thisTask, setTask] = useState(task)
@@ -19,34 +21,44 @@ function TaskComponent({ task, edit, notifyDrag, notifyRelease, isTaskDragged, a
     const thisRef = useRef();
 
     useEffect(() => {
-        if (!isTaskDragged && thisRef.current) {
-            const thisBoundingBox = thisRef.current.getBoundingClientRect();
-            
-            const taskBottom = {
-                x: (thisBoundingBox.left + thisBoundingBox.right) / 2,
-                y: thisBoundingBox.bottom,
-                columnID: thisTask.columnID,
-                taskOrder: thisTask.taskOrder + 1,
-                setTasks: setTasks,
-                tasks: tasks
-            }
 
-            addTaskPoint(taskBottom);
+        function refreshpoints() {
+            if (isTaskDragged && thisRef.current && thisTask) {
+                console.log("TASK POINTS ARE BEING ADDED");
 
-            if (thisTask.taskOrder === 0) {
+                const thisBoundingBox = thisRef.current.getBoundingClientRect();
+
+                if (isDragged) {
+                    const taskCenter = {
+                        x: (thisBoundingBox.left + thisBoundingBox.right) / 2,
+                        y: (thisBoundingBox.top + thisBoundingBox.bottom) / 2,
+                        columnID: thisTask.columnID,
+                        taskOrder: thisTask.taskOrder,
+                        setTasks: setTasks,
+                        tasks: tasks,
+                        pointName: "task center",
+                    }
+
+                    addTaskPoint(taskCenter);
+                    return;
+                }
+
                 const taskTop = {
                     x: (thisBoundingBox.left + thisBoundingBox.right) / 2,
                     y: thisBoundingBox.top,
                     columnID: thisTask.columnID,
                     taskOrder: thisTask.taskOrder,
                     setTasks: setTasks,
-                    tasks: tasks
+                    tasks: tasks,
+                    pointName: "task top"
                 }
 
                 addTaskPoint(taskTop);
             }
         }
-    }, [isTaskDragged, isDragged])
+
+        refreshpoints();
+    }, [isTaskDragged, isDragged, tasks])
 
     useEffect(() => {
         if (isDragged) {
@@ -66,7 +78,7 @@ function TaskComponent({ task, edit, notifyDrag, notifyRelease, isTaskDragged, a
     return (
         <div ref={thisRef} className="taskComponent" onMouseDown={handleMouseDown} style={{ backgroundColor: thisTask.taskColor,  transform: `translate(${offset.x}px, ${offset.y}px)`, zIndex: isDragged ? 300 : 'auto' } }>
             <p className="taskName">{thisTask.taskName}</p>
-            <div className="pencilButtonContainer" onClick={(e) => { e.stopPropagation(); edit(task, taskSetter)} } >
+            <div className="pencilButtonContainer" onClick={(e) => { e.stopPropagation(); edit(task, taskSetter, tasks, setTasks)} } >
                 <img src="pencil.png" className="pencilButton"/>
             </div>
         </div>
@@ -86,14 +98,18 @@ function TaskComponent({ task, edit, notifyDrag, notifyRelease, isTaskDragged, a
 
     function handleMouseUp(e) {
         if (isDragged) {
-            setIsDragged(false);
-            const currentPos = {
-                x: e.clientX,
-                y: e.clientY
+            const boundingBox = thisRef.current.getBoundingClientRect();
+
+            const taskCenter = {
+                x: (boundingBox.left + boundingBox.right) / 2,
+                y: (boundingBox.top + boundingBox.bottom) / 2
             }
 
-            console.log('tasks', tasks);
-            notifyRelease(thisTask, currentPos, setTasks, tasks);
+            console.log("Supposed task center", taskCenter);
+
+            setIsDragged(false);
+            
+            notifyRelease(thisTask, taskCenter, setTasks, tasks);
             setOffset({ x: 0, y: 0 });
         }
     }

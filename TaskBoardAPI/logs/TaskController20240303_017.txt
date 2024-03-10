@@ -1,3 +1,0 @@
-2024-03-03 19:04:04.960 [INF] Deleted 3 tasks from column with id 60
-2024-03-03 19:04:04.989 [INF] Column 60 succesfully deleted!
-2024-03-03 19:05:21.583 [INF] Task 20 added to column 52
