@@ -110,7 +110,7 @@ function BoardComponent({ boardID }) {
         <div className="mainBoardContainer" style={{ backgroundColor: board.backgroundColor }}>
             {isTaskCreatorOpen && <TaskCreator columnID={taskCreatorColumnID} taskOrder={taskCreatorTaskOrder} setTasks={setTasksFunc} onClose={() => { openTaskCreator(false); setTaskCreatorColumnID(-1); setTaskCreatorTaskOrder(-1); setSetTasksFunc(null); }} />} 
 
-            {isTaskDisplayOpen && <TaskDisplay task={displayedTask} tasks={tasksForTaskEditor} setTasks={tasksSetter} onClose={() => {openTaskDisplay(false); setTaskSetter(null); setDisplayedTask(null); }} edit={() => { setIsTaskEditorOpen(true); } } />}
+            {isTaskDisplayOpen && !isTaskEditorOpen && <TaskDisplay task={displayedTask} tasks={tasksForTaskEditor} setTasks={tasksSetter} onClose={() => {openTaskDisplay(false); setTaskSetter(null); setDisplayedTask(null); }} edit={() => { setIsTaskEditorOpen(true); } } />}
             {isTaskEditorOpen && <TaskEditor task={displayedTask} onClose={() => {openTaskDisplay(false); setIsTaskEditorOpen(false); setTaskSetter(null); setDisplayedTask(null) }} setTask={taskSetter} />}
 
             {   
