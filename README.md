@@ -1,6 +1,7 @@
 # TaskBoard
 ## A full stack app created to manage your tasks!
-Users can make their own account to create their own task boards which can be managed with user friendly pop up menus and complete drag and drop behaviour implemented from scratch!
+Users can make their own account to create their own task boards which can be managed with user friendly pop-up menus and complete drag and drop behaviour implemented from scratch!
+You can use it to manage your projects, and organize your day to day tasks.
 ## Tech stack
 ### Backend
 - .NET 8.0 with C# 12
