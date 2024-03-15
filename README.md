@@ -10,7 +10,7 @@ You can use it to manage your projects, and organize your day to day tasks.
 ### Frontend
 - Javascript
 - React 17
- Created using **Visual Studio 2022**
+Created using **Visual Studio 2022**
 
 ### Screenshots
 ![login page](https://github.com/s3r10us3r/TaskBoard/assets/116948957/8f22c28b-425c-4e10-a320-3873f19fa011)
