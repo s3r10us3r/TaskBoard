@@ -3,14 +3,15 @@
 Users can make their own account to create their own task boards which can be managed with user friendly pop-up menus and complete drag and drop behaviour implemented from scratch!
 You can use it to manage your projects, and organize your day to day tasks.
 ## Tech stack
+Created using **Visual Studio 2022**
 ### Backend
 - .NET 8.0 with C# 12
 - Entity Framework Core 6.0
 - SQL Server 16
 ### Frontend
 - Javascript
-- React 17
-Created using **Visual Studio 2022**
+- React 17  
+
 
 ### Screenshots
 ![login page](https://github.com/s3r10us3r/TaskBoard/assets/116948957/8f22c28b-425c-4e10-a320-3873f19fa011)
